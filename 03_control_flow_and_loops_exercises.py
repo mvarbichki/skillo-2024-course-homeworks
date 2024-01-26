@@ -46,3 +46,18 @@ def correct_answer():
     # hande incorrect input type
     except ValueError:
         print("Wrong input type try again")
+
+
+"""Problem 3: Write a Python script that iterates over the first 1000 numbers and prints "Fizz" if the number is 
+divisible by 3, "Buzz" if it's divisible by 5, and "FizzBuzz" if it's divisible by both 3 and 5."""
+
+
+def fizz_buzz():
+    for num in range(1, 1001):
+        # checks first the AND condition otherwise it would be covered by the other two cases
+        if (num % 3 == 0) and (num % 5 == 0):
+            print("FizzBuzz")
+        elif num % 3 == 0:
+            print("Fizz")
+        elif num % 5 == 0:
+            print("Buzz")
