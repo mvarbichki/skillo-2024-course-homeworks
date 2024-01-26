@@ -124,3 +124,20 @@ def modified_correct_answer():
     # hande incorrect input type
     except ValueError:
         print("Wrong input type! Try again")
+
+
+"""Problem 6: Write a Python program that takes an integer input from the user and prints the multiplication table 
+for that number from 1 to 10 using a for loop."""
+
+
+def input_multiplication_table():
+    # checks the user input
+    try:
+        num = int(input("Enter an integer for multiplication table for it from 1 to 10: "))
+        # iterate through range 1 - 10
+        for i in range(1, 11):
+            # multiplying the input with each iteration in the range
+            print(f"{num} * {i} is: {i * num}")
+    # hande incorrect input type
+    except ValueError:
+        print("Wrong input type! Try again")
