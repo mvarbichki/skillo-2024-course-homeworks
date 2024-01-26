@@ -3,9 +3,9 @@ if-else statement to print the result."""
 
 
 def odd_or_even():
-    # try the user input
+    # checks the user input
     try:
-        num = int(input("Enter a integer: "))
+        num = int(input("Enter an integer: "))
         # check for even
         if num % 2 == 0:
             print(f"{num} is even")
@@ -13,7 +13,7 @@ def odd_or_even():
             print(f"{num} is odd")
     # hande incorrect input type
     except ValueError:
-        print("Wrong input type try again")
+        print("Wrong input type! Try again")
 
 
 """Problem 1: Write a Python program to find the sum of all even numbers from 1 to 100 using a loop. Make use of 
@@ -37,15 +37,15 @@ equal to ) until the user provides a correct answer."""
 
 
 def correct_answer():
-    # try the user input.
+    # checks the user input
     try:
-        answer = int(input("How much does 5 + 17 equal to (enter a integer): "))
+        answer = int(input("How much does 5 + 17 equal to (enter an integer): "))
         while answer != (5 + 17):
             answer = int(input("Incorrect. How much does 5 + 17 equal to (enter a integer): "))
         print(f"{answer} is the correct answer")
     # hande incorrect input type
     except ValueError:
-        print("Wrong input type try again")
+        print("Wrong input type! Try again")
 
 
 """Problem 3: Write a Python script that iterates over the first 1000 numbers and prints "Fizz" if the number is 
@@ -61,3 +61,27 @@ def fizz_buzz():
             print("Fizz")
         elif num % 5 == 0:
             print("Buzz")
+
+
+"""Problem 4: Design a Python program that simulates a simple guessing game. The program should generate a random 
+number between 1 and 100 and ask the user to guess it. Provide hints like "Too high" or "Too low" until the user 
+guesses the correct number. Use a while loop for this game."""
+import random
+
+
+def guess_random_number():
+    # generates random number between 1 and 100
+    random_num = random.randint(1, 100)
+    # checks the user input
+    try:
+        answer = int(input("Guess the random number (enter an integer between 1 and 100): "))
+        while answer != random_num:
+            # compare the answer and the random number and gives hint
+            if answer > random_num:
+                answer = int(input("Too high. Try again (enter an integer between 1 and 100): "))
+            elif answer < random_num:
+                answer = int(input("Too low. Try again (enter an integer between 1 and 100): "))
+        print(f"{answer} is the correct answer")
+    # hande incorrect input type
+    except ValueError:
+        print("Wrong input type! Try again")
