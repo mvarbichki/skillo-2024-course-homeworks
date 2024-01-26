@@ -16,4 +16,18 @@ def odd_or_even():
         print("Wrong input type try again")
 
 
-odd_or_even()
+"""Problem 1: Write a Python program to find the sum of all even numbers from 1 to 100 using a loop. Make use of 
+control flow constructs like the for loop and conditional statements."""
+
+
+def even_numbers_sum():
+    # contains the sum of the even numbers
+    even_sum = 0
+    for num in range(1, 101):
+        # finds even numbers
+        if num % 2 == 0:
+            # adding the even num to the sum var
+            even_sum += num
+
+    print(f"The sum of all even numbers from 1 to 100 is: {even_sum}")
+
