@@ -85,3 +85,42 @@ def guess_random_number():
     # hande incorrect input type
     except ValueError:
         print("Wrong input type! Try again")
+
+
+"""Problem 5: Modify problem 2 so that every time the user is prompted the problem is different. Think of a way to 
+design that and come up with a proper solution for that."""
+
+
+def modified_correct_answer():
+    # counts the correct answers
+    answered_questions = 0
+    # checks the user input
+    try:
+        print("Answer on following 4 questions")
+        # after each correct answer a new will prompt
+        answer = int(input("How much does 5 + 17 equal to (enter an integer): "))
+        while answer != (5 + 17):
+            answer = int(input("Incorrect. How much does 5 + 17 equal to (enter a integer): "))
+        # adds the correct answer
+        answered_questions += 1
+        # tracks the progress
+        print(f"{answer} is correct. Answered question {answered_questions} of 4")
+        # asks new question
+        answer = int(input("How much does 18 - 5 equal to (enter an integer): "))
+        while answer != (18 - 5):
+            answer = int(input("Incorrect. How much does 18 - 5 equal to (enter an integer): "))
+        answered_questions += 1
+        print(f"{answer} is correct. Answered question {answered_questions} of 4")
+        answer = int(input("How much does 6 * 2 equal to (enter an integer): "))
+        while answer != (6 * 2):
+            answer = int(input("Incorrect. How much does 6 * 2 equal to (enter an integer): "))
+        answered_questions += 1
+        print(f"{answer} is correct. Answered question {answered_questions} of 4")
+        answer = int(input("How much does 45 / 9 equal to (enter an integer): "))
+        while answer != (45 / 9):
+            answer = int(input("Incorrect. How much does 45 / 9 equal to (enter an integer): "))
+        answered_questions += 1
+        print(f"Answered question {answered_questions} of 4. Done")
+    # hande incorrect input type
+    except ValueError:
+        print("Wrong input type! Try again")
