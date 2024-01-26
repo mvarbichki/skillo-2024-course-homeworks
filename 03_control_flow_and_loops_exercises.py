@@ -11,7 +11,7 @@ def odd_or_even():
             print(f"{num} is even")
         else:
             print(f"{num} is odd")
-    # hande incorrect input
+    # hande incorrect input type
     except ValueError:
         print("Wrong input type try again")
 
@@ -31,3 +31,18 @@ def even_numbers_sum():
 
     print(f"The sum of all even numbers from 1 to 100 is: {even_sum}")
 
+
+"""Problem 2: Write a Python script that prompts the user in the console a simple problem ( how much does 5 + 17 
+equal to ) until the user provides a correct answer."""
+
+
+def correct_answer():
+    # try the user input.
+    try:
+        answer = int(input("How much does 5 + 17 equal to (enter a integer): "))
+        while answer != (5 + 17):
+            answer = int(input("Incorrect. How much does 5 + 17 equal to (enter a integer): "))
+        print(f"{answer} is the correct answer")
+    # hande incorrect input type
+    except ValueError:
+        print("Wrong input type try again")
