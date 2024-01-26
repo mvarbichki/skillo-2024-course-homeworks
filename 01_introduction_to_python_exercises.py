@@ -30,3 +30,27 @@ def arithmetic_operators(num_one, num_two):
 
 
 print(arithmetic_operators(input("Enter first numeric: "), input("Enter second numeric: ")))
+
+"""Problem 2:
+Write a Python script that creates 5 string variables of 5 bulgarian PINs ( ЕГН ) and 5 names in
+tuples.
+Finally insert only the pairs whose name begins with a vowel in a dictionary and print it."""
+
+p1 = ("8807754693", "Sam")
+p2 = ("9807654697", "Alex")
+p3 = ("7806654693", "Mell")
+p4 = ("8811757793", "Emo")
+p5 = ("9507722693", "Olga")
+# vowel for check
+vowel = "aeiouAEIOU"
+# persons list for check
+persons_list = [p1, p2, p3, p4, p5]
+# dict to store results
+vowel_dict = dict()
+for person in persons_list:
+    # checks person first letter for vowel
+    if person[1][0] in vowel:
+        # adds the person to the dict
+        vowel_dict[person[0]] = person[1]
+
+print(vowel_dict)
