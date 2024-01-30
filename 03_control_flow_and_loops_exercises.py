@@ -158,7 +158,7 @@ def find_the_prime():
         else:
             # since we skip 1, the iteration began in range from 2.
             # it's limited to the num + 1 to check division on itself
-            for i in range(2, num+1):
+            for i in range(2, num + 1):
                 # checks if the num divided without remainder and increment the counter var
                 if num % i == 0:
                     counter += 1
@@ -171,6 +171,34 @@ def find_the_prime():
                 print(f"{num} is prime")
             else:
                 print(f"{num} is not prime")
+    # hande incorrect input type
+    except ValueError:
+        print("Wrong input type! Try again")
+
+
+"""Problem 8: Pattern Printing:
+Write a program that takes an integer 'n' as input and prints the following pattern using nested for loops:
+Expected output for input 5:
+1
+12
+123
+1234
+12345
+"""
+
+
+def number_pattern():
+    try:
+        num = int(input("Enter an integer: "))
+        # first cycle in range of the input
+        for i in range(num):
+            # the second cycle in range 1 (to begin from 1) is limited to the iteration of the first cycle plus two
+            # additional  runs to equal the input
+            for j in range(1, i+2):
+                # prints index of the second cycle on the same row
+                print(j, end="")
+            # used as a separator between the second cycle's iterations to print new iterations on the new line
+            print()
     # hande incorrect input type
     except ValueError:
         print("Wrong input type! Try again")
