@@ -92,35 +92,26 @@ design that and come up with a proper solution for that."""
 
 
 def modified_correct_answer():
-    # counts the correct answers
-    answered_questions = 0
+    # dict of problems and answers
+    problems = {
+        "5 + 17": 22,
+        "18 - 5": 13,
+        "6 * 2": 12,
+        "45 / 9": 5
+    }
+
+    # converts dict into list of tuples. Unpacks a random problem with its answer
+    key_problem, val_answer = random.choice(list(problems.items()))
+
     # checks the user input
     try:
-        print("Answer on following 4 questions")
-        # after each correct answer a new will prompt
-        answer = int(input("How much does 5 + 17 equal to (enter an integer): "))
-        while answer != (5 + 17):
-            answer = int(input("Incorrect. How much does 5 + 17 equal to (enter a integer): "))
-        # adds the correct answer
-        answered_questions += 1
-        # tracks the progress
-        print(f"{answer} is correct. Answered question {answered_questions} of 4")
-        # asks new question
-        answer = int(input("How much does 18 - 5 equal to (enter an integer): "))
-        while answer != (18 - 5):
-            answer = int(input("Incorrect. How much does 18 - 5 equal to (enter an integer): "))
-        answered_questions += 1
-        print(f"{answer} is correct. Answered question {answered_questions} of 4")
-        answer = int(input("How much does 6 * 2 equal to (enter an integer): "))
-        while answer != (6 * 2):
-            answer = int(input("Incorrect. How much does 6 * 2 equal to (enter an integer): "))
-        answered_questions += 1
-        print(f"{answer} is correct. Answered question {answered_questions} of 4")
-        answer = int(input("How much does 45 / 9 equal to (enter an integer): "))
-        while answer != (45 / 9):
-            answer = int(input("Incorrect. How much does 45 / 9 equal to (enter an integer): "))
-        answered_questions += 1
-        print(f"Answered question {answered_questions} of 4. Done")
+        guessing = int(input(f"How much does {key_problem} equal to (enter an integer): "))
+        # until the problem answer is different from the input guessing, the problem will prompt
+        while val_answer != guessing:
+            guessing = int(input(f"Try again. How much does {key_problem} equal to (enter an integer): "))
+
+        # prints the correct answer
+        print(f"{val_answer} is the correct answer")
     # hande incorrect input type
     except ValueError:
         print("Wrong input type! Try again")
@@ -194,7 +185,7 @@ def number_pattern():
         for i in range(num):
             # the second cycle in range 1 (to begin from 1) is limited to the iteration of the first cycle plus two
             # additional  runs to equal the input
-            for j in range(1, i+2):
+            for j in range(1, i + 2):
                 # prints index of the second cycle on the same row
                 print(j, end="")
             # used as a separator between the second cycle's iterations to print new iterations on the new line
