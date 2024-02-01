@@ -39,4 +39,16 @@ def simple_calculator(a, b, given_operator):
     # returns the executed operator function
     return operator_funct(a, b)
 
+
 # print(simple_calculator(5, 2, "/"))
+
+"""Problem 2: Area of Shapes: Create a module named `geometry` with functions to calculate the area of common shapes 
+like a square, rectangle, triangle, and circle. Import this module and use it to calculate the areas of different 
+shapes."""
+# imports everything from geometry module
+from geometry import *
+
+print(area_of_square(5))
+print(area_of_rectangle(4, 6))
+print(area_of_triangle(6, 5.5))
+print(area_of_circle(9))
