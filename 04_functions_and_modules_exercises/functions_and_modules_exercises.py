@@ -52,3 +52,35 @@ print(area_of_square(5))
 print(area_of_rectangle(4, 6))
 print(area_of_triangle(6, 5.5))
 print(area_of_circle(9))
+
+"""Problem 3: Temperature Conversion: Write a program that converts temperatures between Celsius and Fahrenheit. 
+Create two functions, one for each conversion, and use them in a program to convert temperatures provided by the 
+user."""
+
+
+def celsius_to_fahrenheit(celsius):
+    # checks user input type
+    try:
+        # calculates Fahrenheit
+        result = (float(celsius) * 9 / 5) + 32
+        # returns the result formatted to one digit after the decimal
+        return f"{'%.1f' % result} ºF"
+    except ValueError:
+        return "Wrong input type"
+
+
+print(celsius_to_fahrenheit(input("Enter Celsius for conversion to Fahrenheit: ")))
+
+
+def fahrenheit_to_celsius(fahrenheit):
+    # checks user input type
+    try:
+        # calculates Celsius
+        result = (float(fahrenheit) - 32) * 5 / 9
+        # return the result formatted to one digit after decimal
+        return f"{'%.1f' % result} °C"
+    except ValueError:
+        return "Wrong input type"
+
+
+print(fahrenheit_to_celsius(input("Enter Fahrenheit for conversion to Celsius: ")))
