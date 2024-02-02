@@ -19,6 +19,16 @@ def reverse_lst(arr):
 
 
 reversed_lst = reverse_lst(append_range_to_lst(lst))
-print(reversed_lst)
+# print(reversed_lst)
 
+"""Problem 3. Given a list of words, create a new list containing the lengths of each word."""
+
+words = ["pen", "desk", "bottle", "happiness"]
+
+
+def length_of_words(arr):
+    return [len(word) for word in arr]
+
+
+print(length_of_words(words))
 
