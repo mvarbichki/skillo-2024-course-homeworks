@@ -30,5 +30,23 @@ def length_of_words(arr):
     return [len(word) for word in arr]
 
 
-print(length_of_words(words))
+# print(length_of_words(words))
+
+"""Problem 3.1. Given a list of words, create a new dictionary mapping every word to it's length."""
+
+
+def convert_ls_word_length(arr):
+    word_length = dict()
+    for word in arr:
+        word_length[word] = len(word)
+    return word_length
+
+
+# # dict comprehension version
+def comp_convert_ls_world_length(arr):
+    return {word: len(word) for word in arr}
+
+
+print(convert_ls_word_length(words))
+print(comp_convert_ls_world_length(words))
 
