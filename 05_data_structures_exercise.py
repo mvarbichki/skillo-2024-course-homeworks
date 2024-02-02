@@ -93,4 +93,30 @@ def tuple_min_max_values(arr):
     return f"Min value is: {min_value} and max value is: {max_value}"
 
 
-print(tuple_min_max_values(numbers_tuple))
+# print(tuple_min_max_values(numbers_tuple))
+
+
+"""6. Implement a basic queue structure ( as a global var ) by defining two functions `enqueue` and `dequeue."""
+
+from queue import Queue
+
+q_lst = Queue()
+
+
+# adds task to the back of the queue
+def enqueue(arr, task):
+    return arr.put(task)
+
+
+# gets task from the front of the queue
+def dequeue(arr):
+    return arr.get()
+
+
+enqueue(q_lst, "task one")
+enqueue(q_lst, "mid task")
+enqueue(q_lst, "task two")
+
+# print(dequeue(q_lst))
+# print(dequeue(q_lst))
+# print(dequeue(q_lst))
