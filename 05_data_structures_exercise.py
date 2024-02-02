@@ -47,6 +47,27 @@ def comp_convert_ls_world_length(arr):
     return {word: len(word) for word in arr}
 
 
-print(convert_ls_word_length(words))
-print(comp_convert_ls_world_length(words))
+# print(convert_ls_word_length(words))
+# print(comp_convert_ls_world_length(words))
 
+
+"""Problem 4. Write a function that takes a list and returns the sum of all even numbers in the list."""
+numbers_lst = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
+def sum_of_list_even(arr):
+    even_lst = list()
+    for num in arr:
+        if num % 2 == 0:
+            even_lst.append(num)
+    return sum(even_lst)
+
+
+# list comprehension version
+def comp_sum_of_list_even(arr):
+    even_lst = [num for num in arr if num % 2 == 0]
+    return sum(even_lst)
+
+
+print(sum_of_list_even(numbers_lst))
+print(comp_sum_of_list_even(numbers_lst))
