@@ -1,4 +1,6 @@
 """Problem 1. Create a list with the numbers from 1 to 1000 and print it."""
+import sys
+
 lst = []
 
 
@@ -69,5 +71,26 @@ def comp_sum_of_list_even(arr):
     return sum(even_lst)
 
 
-print(sum_of_list_even(numbers_lst))
-print(comp_sum_of_list_even(numbers_lst))
+# print(sum_of_list_even(numbers_lst))
+# print(comp_sum_of_list_even(numbers_lst))
+
+"""Problem 5. Given a tuple of integers, find the maximum and minimum values without using built-in functions."""
+
+numbers_tuple = (2, 4, 7, 1, -2, 5, 9, 93)
+
+
+def tuple_min_max_values(arr):
+    # presented vars with minimum and maximum system-allowed values ensure it will not skip any number from the tuple
+    min_value = sys.maxsize
+    max_value = -sys.maxsize
+
+    for num in arr:
+        # if the check number is higher/lower than the checked var it will become its new value
+        if min_value > num:
+            min_value = num
+        if max_value < num:
+            max_value = num
+    return f"Min value is: {min_value} and max value is: {max_value}"
+
+
+print(tuple_min_max_values(numbers_tuple))
