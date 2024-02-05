@@ -209,4 +209,15 @@ def removing_duplicates(arr: list):
     except TypeError:
         return "Wrong argument"
 
+
 # print(removing_duplicates(lst_of_duplicates))
+
+
+"""Problem 13. Use list comprehension to create a list of the squares of even numbers from 1 to 30."""
+
+
+def pow_even_in_range():
+    return [pow(num, 2) for num in range(1, 31) if num % 2 == 0]
+
+
+#print(pow_even_in_range())
