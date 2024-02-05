@@ -96,7 +96,7 @@ def tuple_min_max_values(arr):
 # print(tuple_min_max_values(numbers_tuple))
 
 
-"""6. Implement a basic queue structure ( as a global var ) by defining two functions `enqueue` and `dequeue."""
+"""Problem 6. Implement a basic queue structure ( as a global var ) by defining two functions `enqueue` and `dequeue."""
 
 from queue import Queue
 
@@ -120,3 +120,32 @@ enqueue(q_lst, "task two")
 # print(dequeue(q_lst))
 # print(dequeue(q_lst))
 # print(dequeue(q_lst))
+
+
+"""Problem 7. Create a dictionary that maps students to their bank account number. Some students may have multiple bank 
+accounts."""
+
+students = dict()
+
+
+# takes a few arguments and maps them in dict. Does not check for identical records in the inner list (bank acc)
+def students_bank_acc_mapper(arr: dict, student_name: str, bank_acc_name: str, bank_acc_number: str):
+    try:
+        # if the key in the dict (the student name) exist it will append to its value (the inner list). This adds
+        # other bank accounts to the same student
+        if [student_name for student in arr.keys() if student_name.lower() == student]:
+            arr.get(student_name.lower()).append({bank_acc_name.lower(): bank_acc_number})
+        # otherwise, adds a new student plus bank account (lower case) in the dict
+        else:
+            arr.update({student_name.lower(): [{bank_acc_name.lower(): bank_acc_number}]})
+        return arr
+    # handles bad arguments
+    except (ValueError, AttributeError):
+        return "Wrong arguments"
+
+
+students_bank_acc_mapper(students, "Peter", "acc1", "23424")
+students_bank_acc_mapper(students, "Peter", "acc2", "23424")
+students_bank_acc_mapper(students, "SAMMY", "acc2", "23424")
+
+print(students)
