@@ -234,6 +234,16 @@ def words_length_dict(arr: list):
         return "Wrong argument"
 
 
-#print(words_length_dict(words))
+# print(words_length_dict(words))
 
 
+"""Problem 15. Write a program that generates a set of prime numbers less than 100 using list comprehensions and 
+sets."""
+
+
+def prime_1_100():
+    # took as an example a similar solution from StackOverflow for my solution
+    return {i for i in range(2, 100) if all(i % j for j in range(2, int(i ** 0.5) + 1))}
+
+
+# print(prime_1_100())
