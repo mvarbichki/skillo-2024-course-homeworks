@@ -144,8 +144,26 @@ def students_bank_acc_mapper(arr: dict, student_name: str, bank_acc_name: str, b
         return "Wrong arguments"
 
 
-students_bank_acc_mapper(students, "Peter", "acc1", "23424")
-students_bank_acc_mapper(students, "Peter", "acc2", "23424")
-students_bank_acc_mapper(students, "SAMMY", "acc2", "23424")
+# students_bank_acc_mapper(students, "Peter", "acc1", "23424")
+# students_bank_acc_mapper(students, "Peter", "acc2", "23424")
+# students_bank_acc_mapper(students, "SAMMY", "acc2", "23424")
+# print(students)
 
-print(students)
+"""Problem 8. Think of a function that can hash lists. Implement it and test it."""
+
+"""Problem 9. Write a function that counts the frequency of each word in a given string and returns a dictionary with 
+the result."""
+
+sentence = "Today is a good day in a good neighborhood for a good person"
+
+
+def word_frequency(arr: str):
+    try:
+        # splits single str in to a list. Dict comprehension to add each word as key and the counted frequency as value
+        return {word: arr.split().count(word) for word in arr.split()}
+    # handle bad argument
+    except AttributeError:
+        return "Wrong argument"
+
+
+print(word_frequency(sentence))
