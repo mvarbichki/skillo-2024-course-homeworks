@@ -197,3 +197,16 @@ def sets_subset(first_arr: set, second_arr: set):
 # print(sets_subset(set_two, set_one))
 
 
+"""Problem 12. Write a function to remove duplicates from a list using a set."""
+
+lst_of_duplicates = ["one", "one", "two", "two"]
+
+
+def removing_duplicates(arr: list):
+    try:
+        # converts a list into a set to remove duplicates
+        return set(arr)
+    except TypeError:
+        return "Wrong argument"
+
+# print(removing_duplicates(lst_of_duplicates))
