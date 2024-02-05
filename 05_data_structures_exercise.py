@@ -220,4 +220,20 @@ def pow_even_in_range():
     return [pow(num, 2) for num in range(1, 31) if num % 2 == 0]
 
 
-#print(pow_even_in_range())
+# print(pow_even_in_range())
+
+
+"""Problem 14. Given a list of words, create a dictionary where the keys are the words and the values are their 
+lengths, using dictionary comprehension."""
+
+
+def words_length_dict(arr: list):
+    try:
+        return {word: len(word) for word in arr}
+    except TypeError:
+        return "Wrong argument"
+
+
+#print(words_length_dict(words))
+
+
