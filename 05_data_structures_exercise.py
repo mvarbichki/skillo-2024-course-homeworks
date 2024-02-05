@@ -115,9 +115,9 @@ enqueue(q_lst, "task one")
 enqueue(q_lst, "mid task")
 enqueue(q_lst, "task two")
 
-#print(dequeue(q_lst))
-#print(dequeue(q_lst))
-#print(dequeue(q_lst))
+# print(dequeue(q_lst))
+# print(dequeue(q_lst))
+# print(dequeue(q_lst))
 
 """Problem 7. Create a dictionary that maps students to their bank account number. Some students may have multiple bank 
 accounts."""
@@ -170,13 +170,30 @@ set_one = {"one", "two", "six"}
 set_two = {"one", "two", "four", "six", "ten"}
 
 
-def sets_intersection(first_set: set, second_set: set):
+def sets_intersection(first_arr: set, second_arr: set):
     # handles bad arguments
     try:
         # returns all elements that are in both sets
-        return first_set.intersection(second_set)
+        return first_arr.intersection(second_arr)
     except AttributeError:
         return "Wrong arguments"
 
 
 # print(sets_intersection(set_one, set_two))
+
+
+"""11. Given two sets, write a function that determines if one set is a subset of the other."""
+
+
+def sets_subset(first_arr: set, second_arr: set):
+    try:
+        # returns boolean if checked set elements are contained in the checking one
+        return first_arr.issubset(second_arr)
+    except AttributeError:
+        return "Wrong arguments"
+
+
+# print(sets_subset(set_one, set_two))
+# print(sets_subset(set_two, set_one))
+
+
