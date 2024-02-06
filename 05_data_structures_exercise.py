@@ -148,6 +148,28 @@ def students_bank_acc_mapper(arr: dict, student_name: str, bank_acc_name: str, b
 
 """Problem 8. Think of a function that can hash lists. Implement it and test it."""
 
+
+def hashing_lists(arr: list):
+    try:
+        # iterates in a given array. In sub-for-cycle iterates, all word's characters are converted in ascii, and write
+        # them in list comprehension as separate sub-lists
+        return [[ord(c) for c in word] for word in arr]
+    except TypeError:
+        return "Wrong argument"
+
+
+def de_hashing_list(arr: list):
+    try:
+        # same process as in hashing_lists, but this time write ascii characters as str in sub-lists
+        # (each word in separate list) and join the sub-lists in whole words
+        return ["".join(chr(word) for word in c) for c in arr]
+    except TypeError:
+        return "Wrong arguments"
+
+
+# print(hashing_lists(words))
+# print(de_hashing_list(hashing_lists(words)))
+
 """Problem 9. Write a function that counts the frequency of each word in a given string and returns a dictionary with 
 the result."""
 
@@ -244,6 +266,5 @@ sets."""
 def prime_1_100():
     # took as an example a similar solution from StackOverflow for my solution
     return {i for i in range(2, 100) if all(i % j for j in range(2, int(i ** 0.5) + 1))}
-
 
 # print(prime_1_100())
