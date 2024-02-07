@@ -69,9 +69,42 @@ class Student:
 
 student = Student("Stephan", 22)
 
-
-#print(f"Before - {student.getter_name()}, {student.getter_age()} ")
+# print(f"Before - {student.getter_name()}, {student.getter_age()} ")
 student.setter_name("Simon")
 student.setter_age(25)
-#print(f"After - {student.getter_name()}, {student.getter_age()}")
+# print(f"After - {student.getter_name()}, {student.getter_age()}")
 
+"""Problem 3: Design a class "BankAccount" with methods for deposit, withdrawal, and balance inquiry. Use 
+encapsulation to protect the account balance. Demonstrate proper usage of the class."""
+
+
+class BankAccount:
+
+    def __init__(self, balance):
+        self.__balance = balance
+
+    def deposit(self, deposit_sum):
+        self.__balance += deposit_sum
+        return f"Deposit succeed"
+
+    def withdrawal(self, withdrawal_sum):
+        # checks if withdrawal sum is bigger than the balance
+        if withdrawal_sum > self.__balance:
+            return f"Balance is exceed. Your balance: {self.__balance}"
+        else:
+            self.__balance -= withdrawal_sum
+            return "Withdrawal succeed"
+
+    def balance_inquiry(self):
+        return self.__balance
+
+
+# object with initiate balance
+customer_acc = BankAccount(5000)
+
+# print(f"Balance before transaction: {customer_acc.balance_inquiry()}")
+# print(customer_acc.deposit(500))
+# print(f"Balance after transaction: {customer_acc.balance_inquiry()}")
+# print(customer_acc.withdrawal(5600))
+# print(customer_acc.withdrawal(1500))
+# print(f"Balance after transaction: {customer_acc.balance_inquiry()}")
