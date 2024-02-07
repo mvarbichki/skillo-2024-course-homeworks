@@ -196,3 +196,30 @@ class Book:
 book_one = Book("WWII history", [i for i in range(1, 101)])
 
 # print(book_one)
+
+"""Problem 7: Create a class "Animal" with a special method "__init__" that sets a species attribute. Implement 
+subclasses "Dog" and "Cat" with their own "__str__" methods. Use polymorphism to display species information."""
+
+
+class Animal:
+
+    def __init__(self, species):
+        self.species = species
+
+
+class Dog(Animal):
+    def __repr__(self):
+        return f"Dogs are {self.species} and can bark"
+
+
+class Cat(Animal):
+
+    def __repr__(self):
+        return f"Cats are {self.species} and can meow"
+
+
+dog = Dog("mammals")
+cat = Cat("mammals")
+
+# print(dog.__str__())
+# print(cat.__str__())
