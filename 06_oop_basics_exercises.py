@@ -174,3 +174,25 @@ bicycle = Bicycle()
 
 # print(car.start_engin())
 # print(bicycle.start_engin())
+
+
+"""Problem 6: Implement a class "Book" with special methods "__str__" and "__len__" to provide a string 
+representation and the number of pages. Create instances of "Book" and demonstrate the use of these methods."""
+
+
+class Book:
+
+    def __init__(self, book_name, pages):
+        self.book_name = book_name
+        self.pages = pages
+
+    def __len__(self):
+        return len(self.pages)
+
+    def __str__(self):
+        return f"The book name is {self.book_name} and has {self.__len__()} pages"
+
+
+book_one = Book("WWII history", [i for i in range(1, 101)])
+
+# print(book_one)
