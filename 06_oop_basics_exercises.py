@@ -108,3 +108,36 @@ customer_acc = BankAccount(5000)
 # print(customer_acc.withdrawal(5600))
 # print(customer_acc.withdrawal(1500))
 # print(f"Balance after transaction: {customer_acc.balance_inquiry()}")
+
+
+"""Problem 4: Implement a class "Rectangle" with private attributes for length and width. Include special methods 
+"__eq__" and "__lt__" to compare rectangles based on area and perimeter. Test the comparison operators with multiple 
+instances."""
+
+
+class Rectangle:
+
+    def __init__(self, length, width):
+        self.__length = length
+        self.__width = width
+
+    def area_of_rectangle(self):
+        return self.__length * self.__width
+
+    def __eq__(self, other):
+        return (self.__length == other.__length) and (self.__width == other.__width)
+
+    def __lt__(self, other):
+        return self.__length < other.__length and self.__width < other.__width
+
+
+r1 = Rectangle(3, 5)
+r2 = Rectangle(3, 5)
+r3 = Rectangle(6, 10)
+
+# print(f"Is r1 equal to r2?: {r1 == r2}")
+# print(f"Is r1 smaller than r2?: {r1 < r2}")
+# print(f"Is r2 smaller then r3?: {r2 < r3}")
+# print(f"IS r1 area equal to r2 area?: {r1.area_of_rectangle() == r2.area_of_rectangle()}")
+# print(f"Is r1 area smaller than r2 area?: {r1.area_of_rectangle() < r2.area_of_rectangle()}")
+# print(f"Is r1 area smaller than r3 area?: {r1.area_of_rectangle() < r3.area_of_rectangle()}")
