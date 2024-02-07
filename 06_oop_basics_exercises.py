@@ -37,8 +37,41 @@ class Email:
 
 
 email_one = Email("astefanov@somemail.com")
-email_two = Email("mivanova@otehrmail.com")
+email_two = Email("mivanova@othermail.com")
 
-print(f"Is emails same? {email_one == email_two}")
-print(f"Is the email different? {email_one != email_two}")
-print(f"Is emails same? {email_two == email_two}")
+# print(f"Is emails same? {email_one == email_two}")
+# print(f"Is the email different? {email_one != email_two}")
+# print(f"Is emails same? {email_two == email_two}")
+
+
+"""Problem 2: Create a class "Student" with private attributes for name and age. Implement getter and setter methods 
+for these attributes. Demonstrate their usage."""
+
+
+class Student:
+
+    def __init__(self, name, age):
+        self.__name = name
+        self.__age = age
+
+    def getter_name(self):
+        return self.__name
+
+    def getter_age(self):
+        return self.__age
+
+    def setter_name(self, value_name):
+        self.__name = value_name
+
+    def setter_age(self, value_age):
+        self.__age = value_age
+
+
+student = Student("Stephan", 22)
+
+
+#print(f"Before - {student.getter_name()}, {student.getter_age()} ")
+student.setter_name("Simon")
+student.setter_age(25)
+#print(f"After - {student.getter_name()}, {student.getter_age()}")
+
