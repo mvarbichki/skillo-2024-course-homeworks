@@ -138,33 +138,24 @@ def input_multiplication_table():
 through possible divisors and use an if-else statement to determine if it's prime."""
 
 
-def find_the_prime():
+def find_prime(num):
     try:
-        # increments each time if the num modulo division is equal to 0
-        counter = 0
-        num = int(input("Enter an integer for a prime number check: "))
-        # skips the check if input is 1 or 0
-        if (num == 1) or (num == 0):
-            print(f"{num} is not prime")
+        # casts the input in int
+        converted_num = int(num)
+        # the case when num is 1 or below
+        if converted_num <= 1:
+            return f"{converted_num} is not prime"
+        # the range began from 2 and skipped division on itself
         else:
-            # since we skip 1, the iteration began in range from 2.
-            # it's limited to the num + 1 to check division on itself
-            for i in range(2, num + 1):
-                # checks if the num divided without remainder and increment the counter var
-                if num % i == 0:
-                    counter += 1
-                    # since we skip 1 it should modulo division only on itself to be prime
-                    # if counter pass 1 the cycle will beak
-                    if counter > 1:
-                        break
-            # after the cycle if the counter is equal to 1 the num is prime
-            if counter == 1:
-                print(f"{num} is prime")
+            # checks if the num can be division on each number from the range
+            for i in range(2, converted_num):
+                if converted_num % i == 0:
+                    return f"{converted_num} is not prime"
             else:
-                print(f"{num} is not prime")
-    # hande incorrect input type
+                return f"{converted_num} is prime"
+    # handles incorrect input type
     except ValueError:
-        print("Wrong input type! Try again")
+        return "Wrong input type! Try again"
 
 
 """Problem 8: Pattern Printing:
