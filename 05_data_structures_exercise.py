@@ -263,8 +263,23 @@ def words_length_dict(arr: list):
 sets."""
 
 
+def find_prime(num):
+    try:
+        converted_num = int(num)
+        if converted_num <= 1:
+            return False
+        else:
+            for i in range(2, converted_num):
+                if converted_num % i == 0:
+                    return False
+            else:
+                return True
+    except ValueError:
+        return "Wrong input type! Try again"
+
+
 def prime_1_100():
-    # took as an example a similar solution from StackOverflow for my solution
-    return {i for i in range(2, 100) if all(i % j for j in range(2, int(i ** 0.5) + 1))}
+    # set comprehension prime numbers. Checks each num from the given range with find_prime function if true adds it
+    return {num for num in range(2, 100) if find_prime(num)}
 
 # print(prime_1_100())
