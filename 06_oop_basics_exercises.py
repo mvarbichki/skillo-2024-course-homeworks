@@ -141,3 +141,36 @@ r3 = Rectangle(6, 10)
 # print(f"IS r1 area equal to r2 area?: {r1.area_of_rectangle() == r2.area_of_rectangle()}")
 # print(f"Is r1 area smaller than r2 area?: {r1.area_of_rectangle() < r2.area_of_rectangle()}")
 # print(f"Is r1 area smaller than r3 area?: {r1.area_of_rectangle() < r3.area_of_rectangle()}")
+
+
+"""Problem 5: Design an abstract class "Vehicle" with a method "start_engine()". Create two subclasses, 
+"Car" and "Bicycle," implementing the "start_engine()" method differently. Demonstrate polymorphism by calling the 
+method on instances of both subclasses."""
+
+from abc import ABC, abstractmethod
+
+
+class Vehicle(ABC):
+
+    @abstractmethod
+    def start_engin(self):
+        pass
+
+
+class Car(Vehicle):
+
+    def start_engin(self):
+        return "Makes a sound of working engine"
+
+
+class Bicycle(Vehicle):
+
+    def start_engin(self):
+        return "Does not have engine"
+
+
+car = Car()
+bicycle = Bicycle()
+
+# print(car.start_engin())
+# print(bicycle.start_engin())
