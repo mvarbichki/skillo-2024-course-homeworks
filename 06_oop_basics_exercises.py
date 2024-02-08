@@ -263,3 +263,34 @@ class Manager(Employee):
 # print(f"{m_one.department} manager is {m_one.getter_name()} with {m_one.getter_salary()} salary")
 
 
+"""Problem 9: Create a class called "Employee" that has attributes name, start_date, PIN, phone, address, 
+manager_name, department. Decide their access specifiers. Implement methods to calculate employee tenure, 
+and business card info representation."""
+from datetime import datetime
+
+
+class EmployeeProblem9:
+
+    def __init__(self, name, start_date, pin, phone, address, manager_name, department):
+        self.name = name
+        self.start_date = start_date
+        self.__pin = pin
+        self.phone = phone
+        self.address = address
+        self.manager_name = manager_name
+        self.department = department
+
+    # calculates employee tenure
+    def employee_tenure(self):
+        tenure_calculation = datetime.now() - datetime.strptime(self.start_date, "%Y-%m-%d")
+        return tenure_calculation.days
+
+    def __str__(self):
+        return (f"Business card - {self.name} | {self.department} department , phone: {self.phone},"
+                f" address: {self.address}")
+
+
+e_one = EmployeeProblem9("Kim Lee", "2019-05-10", 1234, 54645642, "Sofia", "Jon Do", "HR")
+
+# print(f"Employee tenure: {e_one.employee_tenure()} days")
+# print(e_one.__str__())
