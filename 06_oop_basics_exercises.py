@@ -223,3 +223,43 @@ cat = Cat("mammals")
 
 # print(dog.__str__())
 # print(cat.__str__())
+
+
+"""Problem 8: Design a class "Employee" with encapsulated attributes for name and salary. Implement a subclass 
+"Manager" that inherits from "Employee" and includes an additional attribute for the department. Use getters and 
+setters to access and modify these attributes."""
+
+
+class Employee:
+
+    def __init__(self, name, salary):
+        self.__name = name
+        self.__salary = salary
+
+    def setter_name(self, name_value):
+        self.__name = name_value
+
+    def setter_salary(self, salary_value):
+        self.__salary = salary_value
+
+    def getter_name(self):
+        return self.__name
+
+    def getter_salary(self):
+        return self.__salary
+
+
+class Manager(Employee):
+    def __init__(self, department, name, salary):
+        super().__init__(name, salary)
+        self.department = department
+
+
+# m_one = Manager("HR", "Mimi", 3200)
+# print(f"{m_one.department} manager is {m_one.getter_name()} with {m_one.getter_salary()} salary")
+# m_one.setter_name("Sam")
+# m_one.setter_salary(4000)
+# m_one.department = "IT"
+# print(f"{m_one.department} manager is {m_one.getter_name()} with {m_one.getter_salary()} salary")
+
+
