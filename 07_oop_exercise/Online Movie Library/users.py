@@ -19,6 +19,7 @@ class Subscribers:
     def add_subscriber(self, username: str, subscribed: bool):
         self.__subscribers_list.update({username: subscribed})
 
+    # dict guarantee uniq usernames as keys
     def if_subscriber(self, username: str):
         if username in self.__subscribers_list.keys():
             return username

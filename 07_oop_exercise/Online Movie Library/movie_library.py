@@ -133,6 +133,11 @@ class OnlineMovieLibrary:
             if self.__find_movie(movie_name):
                 del self.__all_movies[movie_name]
 
+    # TODO show movie
+    #   def show_movie_info()
+    #   def show_recommended_movies()
+    #   def calculate_rating()
+
 
 library = OnlineMovieLibrary("Movie world", "www.movieworld.com")
 admin = Administrator()
@@ -155,10 +160,8 @@ print(library.getter_movies())
 library.remove_movie_from_library("Rambo-1989", "Stefan")
 print(library.getter_movies())
 
-s1 = Subscribers()
-s1.add_subscriber("someuser1", True)
-s1.add_subscriber("someuser2", False)
+subscribers = Subscribers()
+subscribers.add_subscriber("someuser1", True)
+subscribers.add_subscriber("someuser2", False)
 
-
-
-print(s1.is_subscribed("someuser2"))
+print(subscribers.is_subscribed("someuser2"))
