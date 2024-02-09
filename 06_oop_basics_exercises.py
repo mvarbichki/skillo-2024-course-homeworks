@@ -84,8 +84,12 @@ class BankAccount:
         self.__balance = balance
 
     def deposit(self, deposit_sum):
-        self.__balance += deposit_sum
-        return f"Deposit succeed"
+        # keeps deposit in range 1 - 10000
+        if 1 <= deposit_sum <= 10000:
+            self.__balance += deposit_sum
+            return f"Deposit succeed"
+        else:
+            return "Allowed deposit sum is between 1 nad 10000"
 
     def withdrawal(self, withdrawal_sum):
         # checks if withdrawal sum is bigger than the balance
@@ -104,10 +108,16 @@ customer_acc = BankAccount(5000)
 
 # print(f"Balance before transaction: {customer_acc.balance_inquiry()}")
 # print(customer_acc.deposit(500))
+# print(customer_acc.deposit(-500))
+# print(customer_acc.deposit(10500))
 # print(f"Balance after transaction: {customer_acc.balance_inquiry()}")
 # print(customer_acc.withdrawal(5600))
 # print(customer_acc.withdrawal(1500))
 # print(f"Balance after transaction: {customer_acc.balance_inquiry()}")
+# print(customer_acc.withdrawal(3000))
+# print(customer_acc.withdrawal(500))
+# print(customer_acc.withdrawal(500))
+# print(customer_acc.withdrawal(500))
 
 
 """Problem 4: Implement a class "Rectangle" with private attributes for length and width. Include special methods 
@@ -221,8 +231,8 @@ class Cat(Animal):
 dog = Dog("mammals")
 cat = Cat("mammals")
 
-# print(dog.__str__())
-# print(cat.__str__())
+# print(dog)
+# print(cat)
 
 
 """Problem 8: Design a class "Employee" with encapsulated attributes for name and salary. Implement a subclass 
@@ -274,7 +284,7 @@ class EmployeeProblem9:
     def __init__(self, name, start_date, pin, phone, address, manager_name, department):
         self.name = name
         self.start_date = start_date
-        self.__pin = pin
+        self.pin = pin
         self.phone = phone
         self.address = address
         self.manager_name = manager_name
@@ -292,5 +302,63 @@ class EmployeeProblem9:
 
 e_one = EmployeeProblem9("Kim Lee", "2019-05-10", 1234, 54645642, "Sofia", "Jon Do", "HR")
 
-# print(f"Employee tenure: {e_one.employee_tenure()} days")
-# print(e_one.__str__())
+# print(f"{e_one.name} tenure: {e_one.employee_tenure()} days")
+# print(e_one)
+
+
+"""Problem 10: Create an abstract class "Employee" with attributes for name and salary. Implement a subclass 
+"Manager" that inherits from "Employee" and includes an additional attribute for the department. Ensure that the 
+"Employee" class enforces encapsulation. Every employee and manager should have a method to send a message to. The 
+message must be stored. Create a class "Team" that has a manager and a list of members. Implement a method that sends 
+a message to everyone in the team."""
+
+
+# after a discussion with the teacher, we decided that the task description was not very clear. So we skip making
+# the Employee an abstract class
+class EmployeeProblem10:
+
+    def __init__(self, name, salary):
+        self.__name = name
+        self.__salary = salary
+        self.__messages = []
+
+    def receive_message(self, message):
+        self.__messages.append(message)
+
+    def getter_messages(self):
+        return self.__messages
+
+
+class Developers(EmployeeProblem10):
+    pass
+
+
+class ManagerProblem10(EmployeeProblem10):
+    def __init__(self, department, name, salary):
+        super().__init__(name, salary)
+        self.department = department
+
+
+class Team:
+
+    def __init__(self, manager, developers: list):
+        self.manager = manager
+        self.developers = developers
+
+    def send_messages(self, massage):
+        for developer in self.developers:
+            developer.receive_message(massage)
+
+
+mp10 = ManagerProblem10("IT", "Maria", 8000)
+ep10_one = Developers("Sonny", 6000)
+ep10_two = Developers("Al", 4500)
+ep10_three = Developers("Frank", 4000)
+t_one = Team(mp10, [ep10_one, ep10_two, mp10])
+
+t_one.send_messages("First message")
+t_one.send_messages("Second message")
+
+# print(mp10.getter_messages())
+# print(ep10_two.getter_messages())
+# print(ep10_three.getter_messages()) # empty messages because is not a part of the team
