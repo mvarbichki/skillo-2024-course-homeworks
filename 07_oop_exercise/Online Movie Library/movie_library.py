@@ -104,7 +104,7 @@ class Subscriber:
     
 """
 from movies import Movie
-from users import Administrator
+from users import Administrator, Subscribers
 
 
 class OnlineMovieLibrary:
@@ -122,11 +122,13 @@ class OnlineMovieLibrary:
 
     def add_movie_to_library(self, movie: dict, admin_name: str):
         # adds movie if provide admin
-        if admin.if_admin(admin_name):
+        admin_exist = admin.if_admin(admin_name)
+        if admin_exist:
             self.__all_movies.update(movie)
 
     def remove_movie_from_library(self, movie_name: str, admin_name: str):
-        if admin.if_admin(admin_name):
+        admin_exist = admin.if_admin(admin_name)
+        if admin_exist:
             # if movie exist allow removing
             if self.__find_movie(movie_name):
                 del self.__all_movies[movie_name]
@@ -150,7 +152,13 @@ library.add_movie_to_library(m4.create_movie(), "Stefan")
 library.add_movie_to_library(m5.create_movie(), "Stefan")
 
 print(library.getter_movies())
-
 library.remove_movie_from_library("Rambo-1989", "Stefan")
-
 print(library.getter_movies())
+
+s1 = Subscribers()
+s1.add_subscriber("someuser1", True)
+s1.add_subscriber("someuser2", False)
+
+
+
+print(s1.is_subscribed("someuser2"))
