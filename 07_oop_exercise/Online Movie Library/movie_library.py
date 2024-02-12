@@ -13,7 +13,6 @@ Start with designing your classes and entities in the project.
  recommendations, marking a movie as watched, rating a movie, listing all watched movies and so on.
 3. Implement tests cases accordingly"""
 
-
 from movies import Movie
 from users import Administrator, Subscribers
 
@@ -28,6 +27,7 @@ class OnlineMovieLibrary:
     def show_all_lib_movies(self):
         return self.__all_movies
 
+    # helper for finding movie
     def __find_movie(self, movie_name: str):
         if movie_name in self.__all_movies.keys():
             return movie_name
@@ -51,7 +51,7 @@ class OnlineMovieLibrary:
         else:
             return "Incorrect admin "
 
-    def show_recommended_movies(self, subscriber):
+    def show_recommended_movies(self, subscriber: str):
         # converts dict to list and show the last 3 elements
         recently_added_movies = list(self.__all_movies.items())[-3:]
         # any registered sub can see recommended movies
@@ -60,12 +60,33 @@ class OnlineMovieLibrary:
         else:
             return f"You need to create account"
 
+    def watch_movie(self, subscriber: str, movie_name: str):
+        subscribed_or_trial = subscribers.is_subscribed(subscriber)
+        movie = self.__find_movie(movie_name)
+        # sub can watch movie if it exists and subscribed/trial
+        if movie:
+            if subscribed_or_trial:
+                subscribers.add_to_watched(subscriber, movie_name)
+                return f"{subscriber} watched {movie_name}"
+            else:
+                return "You need to subscribe"
 
-    # TODO show movie
-    #   def watch
-    #   def add_to_fav
-    #   def give_rating
+    def mark_favorites(self, subscriber: str, movie_name: str):
+        subscribed_or_trial = subscribers.is_subscribed(subscriber)
+        movie = self.__find_movie(movie_name)
+        # sub can add to own favorite list if movie exist, subscribed/trial
+        if movie:
+            if subscribed_or_trial:
+                subscribers.add_to_favorites(subscriber, movie_name)
+                return f"{subscriber} added {movie_name} to favorites"
+            else:
+                return "You need to subscribe"
+
+    def rating_a_movie(self, subscriber: str, movie_name: str):
+        hes_been_watched = subscribers.if_watched(subscriber, movie_name)
+    # TODO
     #   def calculate_rating()
+    #   def give_rating
 
 
 library = OnlineMovieLibrary("Movie world", "www.movieworld.com")
@@ -80,7 +101,7 @@ m2 = Movie("Bad Boys-1983", "action")
 m3 = Movie("It-2017", "horror")
 m4 = Movie("Bad Boys-1995", "action")
 m5 = Movie("Love in the air-2024", "romantic, drama")
-m_six = Movie("Naruto-2006/2018", "anime, series")
+m_six = Movie("Ace age-2012", "animation, family")
 
 print(library.add_movie_to_library(m1.create_movie(), "someadmin"))
 print(library.add_movie_to_library(m2.create_movie(), "someadmin"))
@@ -102,6 +123,13 @@ print(subscribers.create_account("someuser3", "not subscribed"))
 print(library.show_recommended_movies('someuser'))
 print(library.show_recommended_movies('someuser3'))
 
+print(library.watch_movie("someuser1", "It-2017"))
+print(library.watch_movie("someuser1", "Love in the air-2024"))
+print(library.watch_movie("someuser2", "It-2017"))
+print(library.watch_movie("someuser3", "It-2017"))
 
-
-
+print(library.mark_favorites("someuser1", "It-2017"))
+print(library.mark_favorites("someuser1", "Love in the air-2024"))
+print(library.mark_favorites("someuser2", "Bad Boys-1995"))
+print(library.mark_favorites("someuser3", "Bad Boys-1995"))
+print(subscribers.get_subscribers())
