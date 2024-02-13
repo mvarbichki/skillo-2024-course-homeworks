@@ -25,12 +25,23 @@ class OnlineMovieLibrary:
 
     # everyone could see what library contains
     def show_all_lib_movies(self):
-        return self.__all_movies
+        movies = []
+        for k, v in self.__all_movies.items():
+            movies.append("Movie: " + k + " | Description: " + v.get("description") + " | Rating: " + str(self.__average_rating(v.get("rating"))))
+            #print(k, v.get("description"),  self.__average_rating(v.get("rating")))
+        return movies
 
     # helper for finding movie
-    def __find_movie(self, movie_name: str):
+    def __get_movie(self, movie_name: str):
         if movie_name in self.__all_movies.keys():
-            return movie_name
+            return self.__all_movies.get(movie_name)
+
+    @staticmethod
+    def __average_rating(ratings: list):
+        try:
+            return sum(ratings) / len(ratings)
+        except ZeroDivisionError:
+            return 0
 
     def add_movie_to_library(self, movie: dict, admin_user: str):
         # adds movie if provide admin
@@ -43,47 +54,49 @@ class OnlineMovieLibrary:
 
     def remove_movie_from_library(self, movie_name: str, admin_name: str):
         admin_exist = admin.if_user(admin_name)
-        if admin_exist:
-            # if movie exist allow removing
-            if self.__find_movie(movie_name):
-                del self.__all_movies[movie_name]
-                return f"{movie_name} removed"
+        if admin_exist and self.__get_movie(movie_name):
+            del self.__all_movies[movie_name]
+            return f"{movie_name} removed"
         else:
             return "Incorrect admin "
 
     def show_recommended_movies(self, subscriber: str):
         # converts dict to list and show the last 3 elements
         recently_added_movies = list(self.__all_movies.items())[-3:]
+        registered_sub = subscribers.if_user(subscriber)
         # any registered sub can see recommended movies
-        if subscribers.if_user(subscriber):
+        if registered_sub:
             return f"Recommended: {recently_added_movies}"
         else:
             return f"You need to create account"
 
     def watch_movie(self, subscriber: str, movie_name: str):
         subscribed_or_trial = subscribers.is_subscribed(subscriber)
-        movie = self.__find_movie(movie_name)
+        movie_exist = self.__get_movie(movie_name)
         # sub can watch movie if it exists and subscribed/trial
-        if movie:
-            if subscribed_or_trial:
-                subscribers.add_to_watched(subscriber, movie_name)
-                return f"{subscriber} watched {movie_name}"
-            else:
-                return "You need to subscribe"
+        if movie_exist and subscribed_or_trial:
+            subscribers.add_to_watched(subscriber, movie_name)
+            return f"{subscriber} watched {movie_name}"
+        else:
+            return "You need to subscribe"
 
     def mark_favorites(self, subscriber: str, movie_name: str):
         subscribed_or_trial = subscribers.is_subscribed(subscriber)
-        movie = self.__find_movie(movie_name)
+        movie_exist = self.__get_movie(movie_name)
         # sub can add to own favorite list if movie exist, subscribed/trial
-        if movie:
-            if subscribed_or_trial:
-                subscribers.add_to_favorites(subscriber, movie_name)
-                return f"{subscriber} added {movie_name} to favorites"
-            else:
-                return "You need to subscribe"
+        if movie_exist and subscribed_or_trial:
+            subscribers.add_to_favorites(subscriber, movie_name)
+            return f"{subscriber} added {movie_name} to favorites"
+        else:
+            return "You need to subscribe"
 
-    def rating_a_movie(self, subscriber: str, movie_name: str):
+    def rating_a_movie(self, subscriber: str, movie_name: str, rating: int):
         hes_been_watched = subscribers.if_watched(subscriber, movie_name)
+        subscribed_or_trial = subscribers.is_subscribed(subscriber)
+        if hes_been_watched and subscribed_or_trial:
+            movie_to_rate = self.__get_movie(movie_name)
+            movie_to_rate.get("rating").append(rating)
+
     # TODO
     #   def calculate_rating()
     #   def give_rating
@@ -132,4 +145,8 @@ print(library.mark_favorites("someuser1", "It-2017"))
 print(library.mark_favorites("someuser1", "Love in the air-2024"))
 print(library.mark_favorites("someuser2", "Bad Boys-1995"))
 print(library.mark_favorites("someuser3", "Bad Boys-1995"))
-print(subscribers.get_subscribers())
+
+print(library.show_all_lib_movies())
+library.rating_a_movie("someuser1", "It-2017", 4)
+library.rating_a_movie("someuser1", "It-2017", 3)
+print(library.show_all_lib_movies())
