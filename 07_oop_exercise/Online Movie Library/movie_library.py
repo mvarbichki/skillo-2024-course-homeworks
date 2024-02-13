@@ -25,17 +25,18 @@ class OnlineMovieLibrary:
 
     # everyone could see what library contains
     def show_all_lib_movies(self):
-        movies = []
+        movies_list = []
         for k, v in self.__all_movies.items():
-            movies.append("Movie: " + k + " | Description: " + v.get("description") + " | Rating: " + str(self.__average_rating(v.get("rating"))))
-            #print(k, v.get("description"),  self.__average_rating(v.get("rating")))
-        return movies
+            movies_list.append("Movie: " + k + " | Description: " + v.get("description") + " | Rating: " +
+                               str(self.__average_rating(v.get("rating"))))
+        return movies_list
 
     # helper for finding movie
     def __get_movie(self, movie_name: str):
         if movie_name in self.__all_movies.keys():
             return self.__all_movies.get(movie_name)
 
+    # calculating avr rating for movie
     @staticmethod
     def __average_rating(ratings: list):
         try:
@@ -61,7 +62,7 @@ class OnlineMovieLibrary:
             return "Incorrect admin "
 
     def show_recommended_movies(self, subscriber: str):
-        # converts dict to list and show the last 3 elements
+        # converts dict to list and show the last 3 elements as recommended
         recently_added_movies = list(self.__all_movies.items())[-3:]
         registered_sub = subscribers.if_user(subscriber)
         # any registered sub can see recommended movies
@@ -93,13 +94,12 @@ class OnlineMovieLibrary:
     def rating_a_movie(self, subscriber: str, movie_name: str, rating: int):
         hes_been_watched = subscribers.if_watched(subscriber, movie_name)
         subscribed_or_trial = subscribers.is_subscribed(subscriber)
+        movie_to_rate = self.__get_movie(movie_name)
+        # sub can give ratings to movies if watched it and subscribed/trial. I skipped checking if the sub already gave
+        # a rating for a certain movie, and just focused on OOP exercise
         if hes_been_watched and subscribed_or_trial:
-            movie_to_rate = self.__get_movie(movie_name)
             movie_to_rate.get("rating").append(rating)
-
-    # TODO
-    #   def calculate_rating()
-    #   def give_rating
+            return f"{subscriber} rated {movie_name}"
 
 
 library = OnlineMovieLibrary("Movie world", "www.movieworld.com")
@@ -147,6 +147,7 @@ print(library.mark_favorites("someuser2", "Bad Boys-1995"))
 print(library.mark_favorites("someuser3", "Bad Boys-1995"))
 
 print(library.show_all_lib_movies())
-library.rating_a_movie("someuser1", "It-2017", 4)
-library.rating_a_movie("someuser1", "It-2017", 3)
+print(library.rating_a_movie("someuser1", "It-2017", 4))
+print(library.rating_a_movie("someuser2", "It-2017", 3))
+print(library.rating_a_movie("someuser1", "Love in the air-2024", 5))
 print(library.show_all_lib_movies())

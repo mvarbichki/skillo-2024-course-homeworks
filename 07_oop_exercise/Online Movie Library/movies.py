@@ -4,7 +4,6 @@ class Movie:
         self.description = description
         self.rating = []
 
-    # the key will combine the movie name and the year. Simple solution to avoid duplication
     def create_movie(self):
         return {
             self.movie_name: {
