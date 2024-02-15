@@ -1,6 +1,3 @@
-from movie_library import OnlineMovieLibrary
-
-
 class Administrator:
     def __init__(self, username: str):
         self.username = username
@@ -14,6 +11,7 @@ class User:
         self.__watched = []
 
     def add_to_favorites(self, movie: object):
+        # if movie not in favorites adds it
         if movie.title not in self.__favorites:
             self.__favorites.append(movie.title)
             return f"{self.username} added {movie.title} to favorites"
@@ -21,6 +19,7 @@ class User:
             return f"{movie.title} already in favorites"
 
     def add_to_watched(self, movie: str):
+        # if move not already in watched adds it
         if movie not in self.__watched:
             self.__watched.append(movie)
 

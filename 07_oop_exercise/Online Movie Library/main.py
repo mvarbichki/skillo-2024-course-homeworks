@@ -16,8 +16,10 @@ Start with designing your classes and entities in the project.
 from movie_library import OnlineMovieLibrary
 from movies import Movie
 from users import Administrator, User
+from rating import MovieRating
 
 movie_library = OnlineMovieLibrary()
+rating_tool = MovieRating()
 admin = Administrator("someadmin")
 print(movie_library.add_admin(admin.username))
 
@@ -36,9 +38,9 @@ print(movie_library.add_movie(movie_five, "wrongadmin"))
 print(movie_library.add_movie(movie_five, "someadmin"))
 print(movie_library.add_movie(movie_six, "someadmin"))
 
-print(movie_library.all_movies)
+print(movie_library.show_all_movies())
 print(movie_library.remove_movie("Rambo-1987", "someadmin"))
-print(movie_library.all_movies)
+print(movie_library.show_all_movies())
 
 user_one = User("someuser_one", "subscribed")
 user_two = User("someuser_two", "trial")
@@ -57,7 +59,15 @@ print(movie_library.watch_movie(movie_six, user_two))
 
 print(user_two.show_watched())
 
-
 print(user_two.add_to_favorites(movie_three))
 print(user_two.add_to_favorites(movie_three))
 print(user_two.show_favorites())
+
+print(movie_library.show_all_movies())
+print(rating_tool.add_rating(movie_three, user_two, 5))
+print(rating_tool.add_rating(movie_three, user_one, -2))
+print(rating_tool.add_rating(movie_three, user_one, 2))
+
+print(rating_tool.add_rating(movie_three, user_two, 4))
+
+print(movie_library.show_all_movies())
