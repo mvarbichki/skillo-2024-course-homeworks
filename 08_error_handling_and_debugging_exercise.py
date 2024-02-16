@@ -47,7 +47,7 @@ print("You entered:", number)"""
 
 
 def get_integer_input():
-    # try/except to check for correct type
+    # try/except to check for correct type amd keyboard interruption
     try:
         num = int(input("Enter an integer: "))
         return num
@@ -57,5 +57,5 @@ def get_integer_input():
         return "Program was interrupted"
 
 
-number = get_integer_input()
+# number = get_integer_input()
 # print("You entered:", number)
