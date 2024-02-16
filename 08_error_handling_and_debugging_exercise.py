@@ -53,6 +53,8 @@ def get_integer_input():
         return num
     except ValueError:
         return "Wrong type"
+    except EOFError:
+        return "Program was interrupted"
 
 
 number = get_integer_input()
