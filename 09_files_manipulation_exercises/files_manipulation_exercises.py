@@ -34,20 +34,36 @@ def count_words_file(file_name):
 this data in a CSV file called "student_scores.csv."""
 
 # imports my validation module
-from validation import inputs_check
+from validation import inputs_check, record_to_csv
 
 
-# TODO separate check from the program
 def students_score_to_csv():
-    name = input("Enter your name: ")
-    score = input("Enter your score: ")
-    correct_inputs = inputs_check(name, score)
-    if correct_inputs is True:
-        pass
-        # print("{:.2f}".format(float(score)))
+    # empty str triggers the while loop
+    name = ""
+    # keeps all user inputs. Used for the CSV saving
+    students_scores_list = []
+    print("Add student records and results. After you have added the desired records, type stop instead of a "
+          "student's name and the record will be exported to CSV. The program ALLOWS student names duplication !\n")
+    while name.lower() != "stop":
+        name = input("Enter student name (or 'stop' to save and export the records): \n")
+        # used to stop the cycle immediately if a stop is entered
+        if name.lower() != "stop":
+            score = input(f"Enter {name.title()} score: \n")
+            correct_inputs = inputs_check(name, score)
+            # checks for bad inputs. If such returns message
+            if correct_inputs is True:
+                # if no bad inputs append the record
+                students_scores_list.append({"name": name.title(), "score": "{:.2f}".format(float(score))})
+                print(f"Student {name} - appended\n")
+            else:
+                print(f"{correct_inputs}. You have to start over")
+                return
+    if students_scores_list:
+        record_to_csv(students_scores_list)
+        print("Exported to CSV")
     else:
-        # if inputs are not correct returns message
-        return correct_inputs
+        print("Empty record")
+    return
 
 
-print(students_score_to_csv())
+# students_score_to_csv()
