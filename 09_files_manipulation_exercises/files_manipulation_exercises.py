@@ -34,7 +34,7 @@ def count_words_file(file_name):
 this data in a CSV file called "student_scores.csv."""
 
 # imports my validation module
-from validation import inputs_check, record_to_csv
+from utilities import inputs_check, record_to_csv
 
 
 def students_score_to_csv():
@@ -67,3 +67,19 @@ def students_score_to_csv():
 
 
 # students_score_to_csv()
+
+"""5. Design a program that reads a JSON file containing a list of products with names and prices. Calculate the 
+total cost of all products and display it."""
+import json
+from utilities import read_json
+
+
+def calculating_product_prices(arr: json):
+    total_price = 0
+    for row in read_json(arr):
+        total_price += float(row.get("price"))
+
+    return f"Total price of all products in the json file are: {'{:.2f}'.format(total_price)}"
+
+
+print(calculating_product_prices("products.json"))

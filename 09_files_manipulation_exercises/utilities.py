@@ -1,4 +1,5 @@
 import csv
+import json
 
 
 # my exceptions
@@ -38,3 +39,9 @@ def record_to_csv(arr: list):
         csv_file.writeheader()
         # write to CSV file
         csv_file.writerows(arr)
+
+
+def read_json(arr: json):
+    with open(arr, "r") as f:
+        return json.load(f)
+
