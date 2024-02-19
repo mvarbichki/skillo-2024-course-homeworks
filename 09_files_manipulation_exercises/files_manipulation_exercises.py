@@ -1,3 +1,5 @@
+from utilities import inputs_check, record_to_csv, read_json
+
 """1. Create a Python script that reads a text file called "numbers.txt" containing integers and calculates their
 sum."""
 
@@ -33,8 +35,8 @@ def count_words_file(file_name):
 """3. Create a Python script that prompts the user to enter student names and their corresponding scores, then stores 
 this data in a CSV file called "student_scores.csv."""
 
+
 # imports my validation module
-from utilities import inputs_check, record_to_csv
 
 
 def students_score_to_csv():
@@ -70,11 +72,9 @@ def students_score_to_csv():
 
 """5. Design a program that reads a JSON file containing a list of products with names and prices. Calculate the 
 total cost of all products and display it."""
-import json
-from utilities import read_json
 
 
-def calculating_product_prices(arr: json):
+def calculating_product_prices(arr):
     total_price = 0
     for row in read_json(arr):
         total_price += float(row.get("price"))
@@ -82,4 +82,16 @@ def calculating_product_prices(arr: json):
     return f"Total price of all products in the json file are: {'{:.2f}'.format(total_price)}"
 
 
-print(calculating_product_prices("products.json"))
+# print(calculating_product_prices("products.json"))
+
+
+"""6. Write a Python script that reads a JSON file, "contacts.json," containing contact information (name, email, 
+phone)."""
+
+
+def read_contacts(arr):
+    # unpack name, email and phone for each person in list of tuples
+    return [(row.get("name"), row.get("email"), row.get("phone")) for row in read_json(arr)]
+
+# for contact in read_contacts("contacts.json"):
+#    print(contact)
