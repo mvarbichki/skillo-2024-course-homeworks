@@ -33,31 +33,21 @@ def count_words_file(file_name):
 """3. Create a Python script that prompts the user to enter student names and their corresponding scores, then stores 
 this data in a CSV file called "student_scores.csv."""
 
-
-class IsAlphabetic(Exception):
-    def __init__(self, message):
-        super().__init__(message)
-
-
-class IsNegative(IsAlphabetic):
-    pass
+# imports my validation module
+from validation import inputs_check
 
 
 # TODO separate check from the program
-def students_score():
-    try:
-        name = input("Enter your name: ")
-        if not name.isalpha():
-            raise IsAlphabetic("Name have to be alphabetic")
-        score = float(input("Enter your score: "))
-        if score < 1:
-            raise IsNegative("Score have to be positive")
-    except ValueError:
-        return "Score have to be float"
-    except IsNegative as ine:
-        return ine
-    except IsAlphabetic as ia:
-        return ia
+def students_score_to_csv():
+    name = input("Enter your name: ")
+    score = input("Enter your score: ")
+    correct_inputs = inputs_check(name, score)
+    if correct_inputs is True:
+        pass
+        # print("{:.2f}".format(float(score)))
+    else:
+        # if inputs are not correct returns message
+        return correct_inputs
 
 
-print(students_score())
+print(students_score_to_csv())
