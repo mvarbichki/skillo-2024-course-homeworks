@@ -1,5 +1,6 @@
 import csv
 import json
+import xml
 import xml.etree.ElementTree as Et
 
 
@@ -33,22 +34,31 @@ def inputs_check(name: str, score: str):
         return True
 
 
-def record_to_csv(arr: list):
-    with open("student_scores.csv", "w") as f:
-        csv_file = csv.DictWriter(f, fieldnames=["name", "score"])
+def write_to_csv(file: csv, arr: list, fieldnames_lst: list):
+    with open(file, "w") as f:
+        csv_file = csv.DictWriter(f, fieldnames=fieldnames_lst)
         # adds header
         csv_file.writeheader()
         # write to CSV file
         csv_file.writerows(arr)
 
 
-def read_json(arr: json):
-    with open(arr, "r") as f:
+def read_from_csv(file: csv):
+    with open(file, "r", newline="") as f:
+        csv_file = csv.reader(f)
+        # skips header
+        next(csv_file, None)
+        # returns key, values in a list of tuples
+        return [(k, v) for k, v in csv_file]
+
+
+def read_json(file: json):
+    with open(file, "r") as f:
         return json.load(f)
 
 
-def extract_data_from_xml(arr):
-    tree = Et.parse(arr)
+def extract_data_from_xml(file: xml):
+    tree = Et.parse(file)
     root = tree.getroot()
     # returns list of tuples with name of the product and the price
     return [(product[0].text, product[1].text) for product in root]

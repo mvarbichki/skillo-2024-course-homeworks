@@ -1,12 +1,12 @@
-from utilities import inputs_check, record_to_csv, read_json, extract_data_from_xml
+from utilities import inputs_check, write_to_csv, read_json, extract_data_from_xml, read_from_csv
 
 """1. Create a Python script that reads a text file called "numbers.txt" containing integers and calculates their
 sum."""
 
 
-def sum_file(file_name):
+def sum_file(file):
     numbers_sum = 0
-    with open(file_name, "r") as f:
+    with open(file, "r") as f:
         # gets each numbers row
         for row in f:
             # splits each row of numbers into lists by ","
@@ -21,8 +21,8 @@ def sum_file(file_name):
 """2. Write a program that reads a text file, "words.txt," and counts the number of words in it."""
 
 
-def count_words_file(file_name):
-    with open(file_name, "r") as f:
+def count_words_file(file):
+    with open(file, "r") as f:
         # splits converts each file's row in to list of words
         # each list is counted via len and result appended in a list
         # returns the counted words as sum of the list
@@ -61,7 +61,7 @@ def students_score_to_csv():
                 print(f"{correct_inputs}. You have to start over")
                 return
     if students_scores_list:
-        record_to_csv(students_scores_list)
+        write_to_csv("student_scores.csv", students_scores_list, ["name", "score"])
         print("Exported to CSV")
     else:
         print("Empty record")
@@ -78,7 +78,6 @@ def calculating_product_prices(arr):
     total_price = 0
     for row in read_json(arr):
         total_price += float(row.get("price"))
-
     return f"Total price of all products in the json file are: {'{:.2f}'.format(total_price)}"
 
 
@@ -95,10 +94,35 @@ def read_contacts(arr):
 
 
 # for contact in read_contacts("contacts.json"):
-#    print(contact)
+#    print(f"Name: {contact[0]}, email: {contact[1]}, phone: {contact[2]} ")
 
 """8. Provide an example XML file, "inventory.xml," that represents a list of products in a store. Write a Python 
 program to read this XML file and print the names and prices of all products."""
 
-for inventory in extract_data_from_xml("inventory.xml"):
-    print(inventory)
+
+def read_xml(file):
+    result_list = []
+    for inventory in extract_data_from_xml(file):
+        result_list.append(inventory)
+    return result_list
+
+
+# for item in read_xml("inventory.xml"):
+#    print(f"{item[0]}: {item[1]}$")
+
+"""4. Write a program that reads a CSV file called "employee_data.csv," and for each employee, calculates their total 
+salary (considering base salary and bonuses) and saves it in a new CSV file called "total_salaries.csv."""
+
+
+def employee_salary_csv(file):
+    annual_salary_list = []
+    for name, salary in read_from_csv(file):
+        # appends dicts of employee name and annual salary plus 1% bonus in a list
+        annual_salary_list.append(
+            {"Employee": name, "Annual salary plus 1% bonus": (float(salary) * 12 + (float(salary) * 12) * 0.1)}
+        )
+    # writes processed data to a new csv file
+    write_to_csv("total_salaries.csv", annual_salary_list, ["Employee", "Annual salary plus 1% bonus"])
+    return "total_salaries.csv exported"
+
+# print(employee_salary_csv("employee_data.csv"))
