@@ -1,5 +1,6 @@
 import csv
 import json
+import xml.etree.ElementTree as Et
 
 
 # my exceptions
@@ -45,3 +46,9 @@ def read_json(arr: json):
     with open(arr, "r") as f:
         return json.load(f)
 
+
+def extract_data_from_xml(arr):
+    tree = Et.parse(arr)
+    root = tree.getroot()
+    # returns list of tuples with name of the product and the price
+    return [(product[0].text, product[1].text) for product in root]

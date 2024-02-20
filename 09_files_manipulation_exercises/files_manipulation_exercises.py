@@ -1,4 +1,4 @@
-from utilities import inputs_check, record_to_csv, read_json
+from utilities import inputs_check, record_to_csv, read_json, extract_data_from_xml
 
 """1. Create a Python script that reads a text file called "numbers.txt" containing integers and calculates their
 sum."""
@@ -93,5 +93,12 @@ def read_contacts(arr):
     # unpack name, email and phone for each person in list of tuples
     return [(row.get("name"), row.get("email"), row.get("phone")) for row in read_json(arr)]
 
+
 # for contact in read_contacts("contacts.json"):
 #    print(contact)
+
+"""9. Provide an example XML file, "inventory.xml," that represents a list of products in a store. Write a Python 
+program to read this XML file and print the names and prices of all products."""
+
+for inventory in extract_data_from_xml("inventory.xml"):
+    print(inventory)

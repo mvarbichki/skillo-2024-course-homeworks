@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+<food>
+    <name>Waffles</name>
+    <price>5.95</price>
+</food>
+<food>
+    <name>Strawberry</name>
+    <price>7.95</price>
+</food>
+<food>
+    <name>Bananas</name>
+    <price>4.00</price>
+</food>
+<food>
+    <name>Bread</name>
+    <price>2.30</price>
+</food>
+</products>
