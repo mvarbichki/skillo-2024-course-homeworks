@@ -1,4 +1,5 @@
-from utilities import inputs_check, write_to_csv, read_json, extract_data_from_xml, read_from_csv
+from utilities import inputs_check, write_to_csv, read_json, extract_data_from_xml, read_from_csv, \
+    salary_bonus_calculation, if_bonus
 
 """1. Create a Python script that reads a text file called "numbers.txt" containing integers and calculates their
 sum."""
@@ -114,15 +115,20 @@ def read_xml(file):
 salary (considering base salary and bonuses) and saves it in a new CSV file called "total_salaries.csv."""
 
 
-def employee_salary_csv(file):
-    annual_salary_list = []
-    for name, salary in read_from_csv(file):
-        # appends dicts of employee name and annual salary plus 1% bonus in a list
-        annual_salary_list.append(
-            {"Employee": name, "Annual salary plus 1% bonus": (float(salary) * 12 + (float(salary) * 12) * 0.1)}
-        )
-    # writes processed data to a new csv file
-    write_to_csv("total_salaries.csv", annual_salary_list, ["Employee", "Annual salary plus 1% bonus"])
-    return "total_salaries.csv exported"
+def employee_salary_csv(file, bonus_percentage: float):
+    valid_bonus = if_bonus(bonus_percentage)
+    if valid_bonus is True:
+        employee_total_salary_list = []
+        for name, salary in read_from_csv(file):
+            total_salary = salary_bonus_calculation(salary=float(salary), bonus=bonus_percentage)
+            # appends dicts of employee name and total in a list
+            employee_total_salary_list.append(
+                {"Employee": name, "Total salary": total_salary}
+            )
+        # writes processed data to a new csv file
+        write_to_csv("total_salaries.csv", employee_total_salary_list, ["Employee", "Total salary"])
+        return "total_salaries.csv exported"
+    else:
+        return valid_bonus
 
-# print(employee_salary_csv("employee_data.csv"))
+# print(employee_salary_csv("employee_data.csv", 0.2))

@@ -2,16 +2,7 @@ import csv
 import json
 import xml
 import xml.etree.ElementTree as Et
-
-
-# my exceptions
-class IsAlphabetic(Exception):
-    def __init__(self, message):
-        super().__init__(message)
-
-
-class IsScoreRange(IsAlphabetic):
-    pass
+from custom_exceptions import InRange, IsAlphabetic
 
 
 def inputs_check(name: str, score: str):
@@ -22,11 +13,11 @@ def inputs_check(name: str, score: str):
             raise IsAlphabetic("Name have to be alphabetic")
         # allows float score in range 1 to 10
         if not 1 <= float_score <= 10:
-            raise IsScoreRange("Score have to be between 1 and 10")
+            raise InRange("Score have to be between 1 and 10")
     except ValueError:
         return "Score have to be float"
-    except IsScoreRange as isr:
-        return isr
+    except InRange as ir:
+        return ir
     except IsAlphabetic as ia:
         return ia
     # if no exceptions return true
@@ -62,3 +53,23 @@ def extract_data_from_xml(file: xml):
     root = tree.getroot()
     # returns list of tuples with name of the product and the price
     return [(product[0].text, product[1].text) for product in root]
+
+
+# calculates salary and bonus
+def salary_bonus_calculation(salary: float, bonus: float):
+    salary += salary * bonus
+    return salary
+
+
+# validates the bonus
+def if_bonus(bonus_type: float):
+    try:
+        # bonus have to be in range 0.1 - 0.9
+        if not 0.1 <= float(bonus_type) <= 0.9:
+            raise InRange("Bonus have to be between 0.1 and 0.9")
+    except InRange as ir:
+        return ir
+    except ValueError:
+        return "Bonus have to be float"
+    else:
+        return True
