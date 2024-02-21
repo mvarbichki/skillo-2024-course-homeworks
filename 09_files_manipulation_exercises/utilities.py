@@ -73,3 +73,7 @@ def if_bonus(bonus_type: float):
         return "Bonus have to be float"
     else:
         return True
+
+
+def avg_scores_calculation(arr: list):
+    return sum(arr) // len(arr)

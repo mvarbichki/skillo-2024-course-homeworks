@@ -1,5 +1,7 @@
+import json
+
 from utilities import inputs_check, write_to_csv, read_json, extract_data_from_xml, read_from_csv, \
-    salary_bonus_calculation, if_bonus
+    salary_bonus_calculation, if_bonus, avg_scores_calculation
 
 """1. Create a Python script that reads a text file called "numbers.txt" containing integers and calculates their
 sum."""
@@ -76,10 +78,9 @@ total cost of all products and display it."""
 
 
 def calculating_product_prices(arr):
-    total_price = 0
-    for row in read_json(arr):
-        total_price += float(row.get("price"))
-    return f"Total price of all products in the json file are: {'{:.2f}'.format(total_price)}"
+    json_file = read_json(arr)
+    total_price_list = sum([price.get("price") for price in json_file])
+    return f"Total price of all products: {'{:.2f}'.format(total_price_list)}"
 
 
 # print(calculating_product_prices("products.json"))
@@ -131,4 +132,26 @@ def employee_salary_csv(file, bonus_percentage: float):
     else:
         return valid_bonus
 
+
 # print(employee_salary_csv("employee_data.csv", 0.2))
+
+
+"""7. Create a CSV file, "student_data.csv," with student names and their corresponding JSON data containing exam 
+scores. Write a program that reads the CSV file and calculates the average score for each student."""
+
+
+def average_students_score(file):
+    student_exam_score_list = read_from_csv(file)
+    result_list = []
+    for student in student_exam_score_list:
+        json_exam_scores = json.loads(student[1])
+        # gets all student scores in a list
+        student_scores_list = [score for score in json_exam_scores.values()]
+        # calculates avg score
+        average_score = avg_scores_calculation(student_scores_list)
+        # appends each student and avg score in a result list
+        result_list.append(f"Student {student[0]} has an average score: {average_score}")
+    return result_list
+
+
+# print(average_students_score("student_data.csv"))
