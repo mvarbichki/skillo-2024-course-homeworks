@@ -34,4 +34,15 @@ def is_prime(number: int):
     else:
         return "Argument must be integer"
 
+
 # print(is_prime(9))
+
+"""2. Write a program to reverse a given string without using string slicing."""
+
+
+def reverse_string(string: str):
+    reversed_str_list = [c for c in reversed(string)]
+    return "".join(reversed_str_list)
+
+
+# print(reverse_string(string_list[2]))
