@@ -1,3 +1,6 @@
+import csv
+import json
+
 # strings for palindrome test
 palindrome_word = "deified"
 palindrome_word_two = "deed"
@@ -55,3 +58,24 @@ def is_same_str(str_one: str, str_two: str):
         return True
     else:
         return False
+
+
+def read_from_csv(file: csv):
+    with open(file, "r") as f:
+        csv_file = csv.reader(f)
+        csv_file.__next__()
+        return [line for line in csv_file]
+
+
+def read_from_json(file: json):
+    with open(file, "r") as f:
+        json_file = json.load(f)
+        return json_file
+
+
+def write_to_csv(filename, arr: list, fieldnames_list: list):
+    with open(filename, "w") as f:
+        csv_file = csv.DictWriter(f, fieldnames=fieldnames_list)
+        csv_file.writeheader()
+        csv_file.writerows(arr)
+        return f"{filename} exported"

@@ -1,5 +1,5 @@
 from utilities import (string_list, punctuation_and_spaces_remover, is_int, is_word_len_equal,
-                       letters_uniformity, is_str, is_same_str)
+                       letters_uniformity, is_str, is_same_str, read_from_csv, read_from_json, write_to_csv)
 
 """0. Create a program that checks if a given word or phrase is a palindrome (reads the same forwards and backward)."""
 
@@ -97,4 +97,28 @@ def count_words_in_str(string: str):
 
 
 # print(count_words_in_str("3. Create a program that checks if two given strings are anagrams of each other."))
+
+"""5. Create a program that reads a CSV file, "sales.csv," containing sales data, and a JSON file, "products.json,
+" with product information. Calculate the total revenue for each product and save it in a new CSV file called 
+"product_revenue.csv."""
+
+
+def total_revenue_export(csv_file, json_file):
+    csv_contend = read_from_csv(csv_file)
+    json_contend = read_from_json(json_file)
+    result_list = []
+    for csv_row in csv_contend:
+        product_name_in_csv = csv_row[0]
+        price_in_csv = int(csv_row[1])
+        for json_row in json_contend:
+            price_in_json = json_row.get("price")
+            if product_name_in_csv == json_row.get("product"):
+                result_list.append(
+                    {"product": product_name_in_csv, "revenue": str(float(price_in_json * price_in_csv))}
+                )
+    return result_list
+
+
+total_revenue_result = total_revenue_export("sales.csv", "products.json")
+print(write_to_csv("product_revenue.csv", total_revenue_result, ["product", "revenue"]))
 

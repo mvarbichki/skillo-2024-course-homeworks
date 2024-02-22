@@ -1,0 +1,14 @@
+[
+  {
+    "product": "pen",
+    "price": 2.50
+  },
+  {
+    "product": "table",
+    "price": 20.00
+  },
+  {
+    "product": "cable",
+    "price": 5.00
+  }
+]
