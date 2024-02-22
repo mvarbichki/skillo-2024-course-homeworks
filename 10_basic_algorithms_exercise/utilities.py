@@ -16,3 +16,11 @@ string_list = [palindrome_word, palindrome_word_two, non_palindrome_word, palind
 # removes punctuations, spaces and concatenate in single string of lower letters
 def punctuation_and_spaces_remover(string: str):
     return "".join([c for c in string if c.isalnum()]).lower()
+
+
+def is_int(number):
+    if isinstance(number, int):
+        return True
+    else:
+        return False
+
