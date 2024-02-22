@@ -18,9 +18,26 @@ def punctuation_and_spaces_remover(string: str):
     return "".join([c for c in string if c.isalnum()]).lower()
 
 
+# checks if given number is int
 def is_int(number):
     if isinstance(number, int):
         return True
     else:
         return False
 
+
+# compares length of two words
+def is_word_len_equal(w_one: str, w_two: str):
+    if len(w_one) == len(w_two):
+        return True
+    else:
+        return False
+
+
+# checks if each letter from the first word is contained in the second word
+def letters_uniformity(str_one: str, str_two: str):
+    letters_differences_between_words = [letter for letter in str_one if letter not in str_two]
+    if not letters_differences_between_words:
+        return True
+    else:
+        return False

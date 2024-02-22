@@ -1,4 +1,4 @@
-from utilities import string_list, punctuation_and_spaces_remover, is_int
+from utilities import string_list, punctuation_and_spaces_remover, is_int, is_word_len_equal, letters_uniformity
 
 """0. Create a program that checks if a given word or phrase is a palindrome (reads the same forwards and backward)."""
 
@@ -46,3 +46,33 @@ def reverse_string(string: str):
 
 
 # print(reverse_string(string_list[2]))
+
+
+"""3. Create a program that checks if two given strings are anagrams of each other."""
+
+
+anagrams_one = ("silent", "silent")
+anagrams_two = ("funeral", "real fun")
+anagrams_three = ("Church of Scientology", "rich-chosen goofy cult")
+
+non_anagrams_one = ("pop", "mob")
+non_anagrams_two = ("team", "beam")
+
+
+def is_anagram(word_own: str, word_two: str):
+    clean_word_one = punctuation_and_spaces_remover(word_own)
+    clean_word_two = punctuation_and_spaces_remover(word_two)
+    first_word_uniformity_compared_to_second = letters_uniformity(clean_word_one, clean_word_two)
+    second_word_uniformity_compared_to_first = letters_uniformity(clean_word_two, clean_word_one)
+    # if word lengths are not the same then they are not checked for anagrams
+    if is_word_len_equal(clean_word_one, clean_word_two):
+        # if no difference between the letters of both words then they are anagrams
+        if first_word_uniformity_compared_to_second and second_word_uniformity_compared_to_first:
+            return f"{word_own} and {word_two} are anagrams"
+        else:
+            return f"{word_own} and {word_two} are NOT anagrams"
+    else:
+        return f"Words are not the same length"
+
+
+# print(is_anagram(anagrams_three[0], anagrams_three[1]))
