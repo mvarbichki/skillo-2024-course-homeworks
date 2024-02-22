@@ -41,3 +41,17 @@ def letters_uniformity(str_one: str, str_two: str):
         return True
     else:
         return False
+
+
+def is_str(data):
+    if isinstance(data, str):
+        return True
+    else:
+        return False
+
+
+def is_same_str(str_one: str, str_two: str):
+    if str_one == str_two:
+        return True
+    else:
+        return False
