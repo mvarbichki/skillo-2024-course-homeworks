@@ -87,3 +87,14 @@ def is_anagram(word_own: str, word_two: str):
 # print(is_anagram(anagrams_three[1], anagrams_three[0]))
 
 """4. Write a program that counts the number of words in a given string."""
+
+
+def count_words_in_str(string: str):
+    if is_str(string):
+        words_list = [w for w in string.split()]
+        return f"There are/is {len(words_list)} words in the given string"
+    return "The argument must be a string"
+
+
+# print(count_words_in_str("3. Create a program that checks if two given strings are anagrams of each other."))
+
