@@ -12,8 +12,8 @@ palindrome_phrases_three = (
     "T. Eliot, top bard, notes putrid tang emanating, is sad; I'd assign it a name: gnat dirt "
     "upset on drab pot toilet.")
 
-string_list = [palindrome_word, palindrome_word_two, non_palindrome_word, palindrome_phrases_one,
-               palindrome_phrases_two, non_palindrome_phrases, palindrome_phrases_three]
+palindrome_string_list = [palindrome_word, palindrome_word_two, non_palindrome_word, palindrome_phrases_one,
+                          palindrome_phrases_two, non_palindrome_phrases, palindrome_phrases_three]
 
 
 # removes punctuations, spaces and concatenate in single string of lower letters
@@ -29,23 +29,6 @@ def is_int(number):
         return False
 
 
-# compares length of two words
-def is_word_len_equal(w_one: str, w_two: str):
-    if len(w_one) == len(w_two):
-        return True
-    else:
-        return False
-
-
-# checks if each letter from the first word is contained in the second word
-def letters_uniformity(str_one: str, str_two: str):
-    letters_differences_between_words = [letter for letter in str_one if letter not in str_two]
-    if not letters_differences_between_words:
-        return True
-    else:
-        return False
-
-
 def is_str(data):
     if isinstance(data, str):
         return True
@@ -53,7 +36,8 @@ def is_str(data):
         return False
 
 
-def is_same_str(str_one: str, str_two: str):
+# does not specify the expected argument type since uses list and str
+def is_same_str(str_one, str_two):
     if str_one == str_two:
         return True
     else:

@@ -1,5 +1,5 @@
-from utilities import (string_list, punctuation_and_spaces_remover, is_int, is_word_len_equal,
-                       letters_uniformity, is_str, is_same_str, read_from_csv, read_from_json, write_to_csv)
+from utilities import (palindrome_string_list, punctuation_and_spaces_remover, is_int, is_str, is_same_str,
+                       read_from_csv, read_from_json, write_to_csv)
 
 """0. Create a program that checks if a given word or phrase is a palindrome (reads the same forwards and backward)."""
 
@@ -16,7 +16,7 @@ def is_palindrome(string: str):
     return "The argument must be a string"
 
 
-# print(is_palindrome(string_list[6]))
+# print(is_palindrome(palindrome_string_list[6]))
 
 """1. Write a function that checks if a given number is prime or not."""
 
@@ -55,36 +55,29 @@ def reverse_string(string: str):
 
 """3. Create a program that checks if two given strings are anagrams of each other."""
 
-anagrams_one = ("silent", "silent")
+anagrams_one = ("silent", "listen")
 anagrams_two = ("funeral", "real fun")
 anagrams_three = ("Church of Scientology", "rich-chosen goofy cult")
-
-non_anagrams_one = ("pop", "mob")
 non_anagrams_two = ("team", "beam")
+# after reworking is_anagram now catches cases as non_anagrams_one with identical letters
+non_anagrams_one = ("pop", "oop")
 
 
-def is_anagram(word_own: str, word_two: str):
+def is_anagram(first_str: str, second_str: str):
     # allows to check for anagram if the arguments are string and not comparing the same string
-    if is_str(word_own) and is_str(word_two) and not is_same_str(word_own, word_two):
-        clean_word_one = punctuation_and_spaces_remover(word_own)
-        clean_word_two = punctuation_and_spaces_remover(word_two)
-        first_word_uniformity_compared_to_second = letters_uniformity(clean_word_one, clean_word_two)
-        second_word_uniformity_compared_to_first = letters_uniformity(clean_word_two, clean_word_one)
-        # if word lengths are not the same then they are not checked for anagrams
-        if is_word_len_equal(clean_word_one, clean_word_two):
-            # if no difference between the letters of both words then they are anagrams
-            if first_word_uniformity_compared_to_second and second_word_uniformity_compared_to_first:
-                return f"{word_own} and {word_two} are anagrams"
-            else:
-                return f"{word_own} and {word_two} are NOT anagrams"
+    if is_str(first_str) and is_str(second_str) and not is_same_str(first_str, second_str):
+        # sorting the results to be compared as a same str
+        clean_str_one = sorted(punctuation_and_spaces_remover(first_str))
+        clean_str_two = sorted(punctuation_and_spaces_remover(second_str))
+        if is_same_str(clean_str_one, clean_str_two):
+            return f"{first_str} and {second_str} are anagrams"
         else:
-            return f"Words are not the same length"
-
+            return f"{first_str} and {second_str} are NOT anagrams"
     else:
         return "The arguments are not string or comparing the same string"
 
 
-# print(is_anagram(anagrams_three[1], anagrams_three[0]))
+# print(is_anagram(non_anagrams_one[0], non_anagrams_one[1]))
 
 """4. Write a program that counts the number of words in a given string."""
 
@@ -120,5 +113,4 @@ def total_revenue_export(csv_file, json_file):
 
 
 total_revenue_result = total_revenue_export("sales.csv", "products.json")
-print(write_to_csv("product_revenue.csv", total_revenue_result, ["product", "revenue"]))
-
+# print(write_to_csv("product_revenue.csv", total_revenue_result, ["product", "revenue"]))
