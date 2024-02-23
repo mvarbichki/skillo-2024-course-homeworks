@@ -1,0 +1,22 @@
+[
+  {
+    "product": "pen",
+    "quantity": 23,
+    "info": "red"
+  },
+  {
+    "product": "pencil",
+    "quantity": 8,
+    "info": "black"
+  },
+  {
+    "product": "paper",
+    "quantity": 5,
+    "info": "A4 format"
+  },
+  {
+    "product": "folder",
+    "quantity": 10,
+    "info": "yellow"
+  }
+]

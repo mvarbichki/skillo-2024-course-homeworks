@@ -114,3 +114,25 @@ def total_revenue_export(csv_file, json_file):
 
 total_revenue_result = total_revenue_export("sales.csv", "products.json")
 # print(write_to_csv("product_revenue.csv", total_revenue_result, ["product", "revenue"]))
+
+
+"""6. Develop a Python script that reads a JSON file called "inventory.json" with information about products and 
+their quantities. Create a new CSV file, "low_stock.csv," containing the names of products with a quantity less than 
+10."""
+
+
+def low_stocks(filename):
+    products = read_from_json(filename)
+    low_stocks_list = [
+        {
+            "product": product.get("product"),
+            "quantity": product.get("quantity")
+        }
+        for product in products
+        if product.get("quantity") < 10
+    ]
+    return low_stocks_list
+
+
+low_stocks_result = low_stocks("inventory.json")
+# print(write_to_csv("low_stock.csv", low_stocks_result, ["product", "quantity"]))
