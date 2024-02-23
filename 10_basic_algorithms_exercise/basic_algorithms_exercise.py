@@ -1,5 +1,5 @@
 from utilities import (palindrome_string_list, punctuation_and_spaces_remover, is_int, is_str, is_same_str,
-                       read_from_csv, read_from_json, write_to_csv)
+                       read_from_csv, read_from_json, write_to_csv, two_sum_unique_pairs, sum_pairs_match, is_int_arr)
 
 """0. Create a program that checks if a given word or phrase is a palindrome (reads the same forwards and backward)."""
 
@@ -136,3 +136,25 @@ def low_stocks(filename):
 
 low_stocks_result = low_stocks("inventory.json")
 # print(write_to_csv("low_stock.csv", low_stocks_result, ["product", "quantity"]))
+
+
+"""7. Write a program that is given a number and an array and checks if there is a pair of numbers in the array that 
+has a sum equal to the given number. ( two-sum problem )"""
+
+
+def two_sum_problem(number: int, arr: list):
+    if is_int(number) and is_int_arr(arr):
+        pairs_list = sum_pairs_match(number, arr)
+        if pairs_list:
+            return f"{number} sum pairs are: {two_sum_unique_pairs(pairs_list)}"
+        return f"No match for {number}"
+    else:
+        return "The arguments must be an integer or array of integers"
+
+
+print(two_sum_problem(7, [7, 3, 4, 6, 2, "3", 10]))
+print(two_sum_problem("t", [7, 3, 4, 6, 2, 3, 10]))
+print(two_sum_problem(7, [7, 3, 4, 6, 2, 3, 10]))
+print(two_sum_problem(8, [7, 3, 4, 6, 2, 3, 10]))
+print(two_sum_problem(10, [7, 3, 4, 6, 2, 3, 10]))
+print(two_sum_problem(3, [7, 3, 4, 6, 2, 3, 10]))

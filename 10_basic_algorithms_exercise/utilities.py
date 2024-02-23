@@ -18,7 +18,11 @@ palindrome_string_list = [palindrome_word, palindrome_word_two, non_palindrome_w
 
 # removes punctuations, spaces and concatenate in single string of lower letters
 def punctuation_and_spaces_remover(string: str):
-    return "".join([c for c in string if c.isalnum()]).lower()
+    return "".join(
+        [
+            c for c in string if c.isalnum()
+        ]
+    ).lower()
 
 
 # checks if given number is int
@@ -63,3 +67,34 @@ def write_to_csv(filename, arr: list, fieldnames_list: list):
         csv_file.writeheader()
         csv_file.writerows(arr)
         return f"{filename} exported"
+
+
+def sum_pairs_match(number: int, arr: list):
+    pairs_list = []
+    # adds each pair of numbers from the array whose sum is equal to the target number
+    for i in arr:
+        [
+            pairs_list.append((i, j))
+            for j in arr
+            if i + j == number
+        ]
+    return pairs_list
+
+
+def two_sum_unique_pairs(arr: list):
+    unique_pairs = set()
+    # sorting the pairs and using a set to filter unique only
+    [
+        unique_pairs.add(tuple(sorted(pair)))
+        for pair in arr
+    ]
+    return unique_pairs
+
+
+# checks if there is any element different from int in a given array
+def is_int_arr(arr):
+    for n in arr:
+        if not is_int(n):
+            return False
+    else:
+        return True
