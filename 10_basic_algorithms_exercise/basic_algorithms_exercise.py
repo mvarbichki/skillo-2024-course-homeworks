@@ -1,5 +1,6 @@
 from utilities import (palindrome_string_list, punctuation_and_spaces_remover, is_int, is_str, is_same_str,
-                       read_from_csv, read_from_json, write_to_csv, two_sum_unique_pairs, sum_pairs_match, is_int_arr)
+                       read_from_csv, read_from_json, write_to_csv, two_sum_unique_pairs, sum_pairs_match, is_int_arr,
+                       reverse_str)
 
 """0. Create a program that checks if a given word or phrase is a palindrome (reads the same forwards and backward)."""
 
@@ -7,9 +8,8 @@ from utilities import (palindrome_string_list, punctuation_and_spaces_remover, i
 def is_palindrome(string: str):
     if is_str(string):
         clean_str = punctuation_and_spaces_remover(string)
-        # reverse the string in var
-        reversed_str = "".join([c for c in reversed(clean_str)])
-        if clean_str == reversed_str:
+        reversed_str = reverse_str(clean_str)
+        if is_same_str(clean_str, reversed_str):
             return f"'{string}' is palindrome"
         else:
             return f"'{string}' is NOT palindrome"

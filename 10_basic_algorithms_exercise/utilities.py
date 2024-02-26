@@ -98,3 +98,8 @@ def is_int_arr(arr):
             return False
     else:
         return True
+
+
+# reverse a string and join it
+def reverse_str(string: str):
+    return "".join([c for c in reversed(string)])
