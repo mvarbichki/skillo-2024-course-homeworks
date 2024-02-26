@@ -3,6 +3,7 @@
 3. Save the response as a json file called response.json"""
 
 import requests
+import json
 
 
 url = "https://reqbin.com/echo/get/json"
@@ -15,7 +16,8 @@ def make_request(url_str: str):
 
 def write_to_json(url_content: str):
     with open("response.json", "w") as f:
-        f.write(url_content)
+        json_object = json.dumps(url_content)
+        f.write(json_object)
         return "Json file exported"
 
 
