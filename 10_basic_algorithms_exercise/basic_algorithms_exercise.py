@@ -45,12 +45,12 @@ def is_prime(number: int):
 
 def reverse_string(string: str):
     if is_str(string):
-        reversed_str_list = [c for c in reversed(string)]
-        return "".join(reversed_str_list)
+        reversed_str = reverse_str(string)
+        return reversed_str
     return "The argument must be a string"
 
 
-# print(reverse_string(string_list[2]))
+# print(reverse_string(palindrome_string_list[2]))
 
 
 """3. Create a program that checks if two given strings are anagrams of each other."""
