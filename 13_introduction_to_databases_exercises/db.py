@@ -7,6 +7,7 @@ class DatabaseConnector:
         self.__bd_name = db_name
         self.__con = sqlite3.connect(self.__bd_name)
         self.__cur = self.__con.cursor()
+        self.er = sqlite3.Error
 
     def db_commit(self):
         self.__con.commit()
@@ -24,6 +25,10 @@ class DatabaseConnector:
             return execute.fetchone()
         else:
             return execute.fetchall()
+
+    # handles sqlite3 errors
+    def db_exceptions(self):
+        return self.er
 
 
 dc = DatabaseConnector("sqlite_exercises.db")
