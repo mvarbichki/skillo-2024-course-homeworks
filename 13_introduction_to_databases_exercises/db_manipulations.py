@@ -40,3 +40,17 @@ def db_execute_statements_update(sql_statement: str):
             return e.sqlite_errorcode, e.sqlite_errorname
     else:
         return "Incorrect argument"
+
+
+def get_products_by_price(sql_statement: str):
+    products_list = []
+    if is_str(sql_statement):
+        try:
+            for product in dc.db_fetch(sql_statement):
+                # appends product name and price in the list
+                products_list.append(f"Product: {product[1]}, price: {product[2]}")
+            return products_list
+        except dc.db_exceptions() as e:
+            return e.sqlite_errorcode, e.sqlite_errorname
+    else:
+        return "Incorrect argument"

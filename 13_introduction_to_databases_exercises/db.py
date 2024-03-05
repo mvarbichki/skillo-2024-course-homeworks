@@ -12,9 +12,6 @@ class DatabaseConnector:
     def db_commit(self):
         self.__con.commit()
 
-    def db_close(self):
-        self.__con.close()
-
     def db_execute_insert(self, sql_statement: str, values: tuple):
         return self.__cur.execute(sql_statement, values)
 

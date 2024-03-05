@@ -1,4 +1,5 @@
-from db_manipulations import get_employees_and_salary, db_execute_statements_insert, db_execute_statements_update
+from db_manipulations import (get_employees_and_salary, db_execute_statements_insert, db_execute_statements_update,
+                              get_products_by_price)
 
 """Problem 0: Select
 Write a SQL query to retrieve the names and salaries of all employees in the "Employees" table."""
@@ -29,3 +30,6 @@ Delete all orders from the "Orders" table that were placed before January 1, 202
 
 """Problem 4: Select with WHERE
 Retrieve the names and prices of products in the "Products" table with a price higher than $50."""
+
+print(get_products_by_price("""SELECT * FROM products
+                            WHERE UnitPrice > 50"""))
