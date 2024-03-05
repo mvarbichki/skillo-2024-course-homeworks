@@ -24,5 +24,8 @@ Update the price of all products in the "Products" table with CategoryID 3 to be
 """Problem 3: Delete
 Delete all orders from the "Orders" table that were placed before January 1, 2023."""
 
+# print(db_execute_statements_update("""DELETE FROM orders
+#                                 WHERE ordered_on < date('2023-01-01')"""))
+
 """Problem 4: Select with WHERE
 Retrieve the names and prices of products in the "Products" table with a price higher than $50."""

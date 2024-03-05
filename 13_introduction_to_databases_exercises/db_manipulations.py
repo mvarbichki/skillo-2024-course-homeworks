@@ -35,7 +35,7 @@ def db_execute_statements_update(sql_statement: str):
         try:
             dc.db_execute_update(sql_statement)
             dc.db_commit()
-            return "Record added"
+            return "Updated"
         except dc.db_exceptions() as e:
             return e.sqlite_errorcode, e.sqlite_errorname
     else:
