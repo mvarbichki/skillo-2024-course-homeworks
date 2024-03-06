@@ -12,24 +12,26 @@ Write a SQL query to retrieve the names and salaries of all employees in the "Em
 2."""
 
 # print(db_execute_statements_insert("""INSERT INTO products VALUES
-#                              (?, ?, ? ,? ,? ,?)
-#                              """, (4, 'Laptop Mitsubishi XS200', 999.99, 3, 3, 2)))
+#                                                     (?, ?, ? ,? ,? ,?)"""
+#                                    , (4, 'Laptop Mitsubishi XS200', 999.99, 3, 3, 2)
+#                                    ))
 
 """Problem 2: Update
 Update the price of all products in the "Products" table with CategoryID 3 to be 10% higher."""
 
 # print(db_execute_statements_update("""UPDATE products
-#                             SET UnitPrice = UnitPrice + (UnitPrice * 0.1)
-#                             WHERE CategoryID = 3"""))
+#                                         SET UnitPrice = UnitPrice + (UnitPrice * 0.1)
+#                                         WHERE CategoryID = 3"""
+#                                    ))
 
 """Problem 3: Delete
 Delete all orders from the "Orders" table that were placed before January 1, 2023."""
 
 # print(db_execute_statements_update("""DELETE FROM orders
-#                                 WHERE ordered_on < date('2023-01-01')"""))
+#                                         WHERE ordered_on < date('2023-01-01')"""))
 
 """Problem 4: Select with WHERE
 Retrieve the names and prices of products in the "Products" table with a price higher than $50."""
 
 print(get_products_by_price("""SELECT * FROM products
-                            WHERE UnitPrice > 50"""))
+                                WHERE UnitPrice > 50"""))
